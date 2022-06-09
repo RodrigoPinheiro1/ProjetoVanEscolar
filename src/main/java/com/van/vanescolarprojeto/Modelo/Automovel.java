@@ -19,8 +19,8 @@ public class Automovel {
     private String modelo;
     private String placa;
 
-    @OneToMany (mappedBy = "automovel", fetch = FetchType.LAZY)
-    private List<Motorista> motorista;
+    @ManyToOne
+    private Motorista motorista;
 
     public Automovel()  {
 

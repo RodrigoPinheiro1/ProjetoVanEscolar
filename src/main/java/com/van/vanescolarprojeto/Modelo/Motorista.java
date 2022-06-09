@@ -23,8 +23,8 @@ public class Motorista {
     private String telefone;
     private Date dataDeNascimento;
 
-    @ManyToOne
-    private Automovel automovel;
+    @OneToMany
+    private List<Automovel> automovel;
 
     @OneToOne
     private ContaSalario contaSalario;
@@ -35,13 +35,23 @@ public class Motorista {
     private List<Responsavel> responsavel;
 
 
-    public Motorista(String nome, String telefone, String cpf, Date dataNascimento, String cnh) {
-    }
+    public Motorista(String nome, String cpf, String cnh, String telefone, Date dataDeNascimento) {
 
-    public Motorista(String nome, String cpf, String telefone, Date dataDeNascimento) {
         this.nome = nome;
         this.cpf = cpf;
+        this.cnh = cnh;
         this.telefone = telefone;
         this.dataDeNascimento = dataDeNascimento;
+
+    }
+
+    public Motorista() {
+    }
+
+    public Motorista(String nome, String telefone, Date dataDeNascimento, ParceiroMotorista parceiroMotorista) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.dataDeNascimento = dataDeNascimento;
+        this.parceiroMotorista = parceiroMotorista;
     }
 }

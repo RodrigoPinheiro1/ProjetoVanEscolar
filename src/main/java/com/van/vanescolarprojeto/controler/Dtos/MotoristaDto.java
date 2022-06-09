@@ -18,8 +18,9 @@ public class MotoristaDto {
     private String nome;
     private Date dataDeNascimento;
     private String telefone;
+    private String cnh;
 
-    private Automovel automovel;
+   // private List<AutomovelDto> automovel;
 
 
 
@@ -29,9 +30,11 @@ public class MotoristaDto {
         this.nome = motorista.getNome();
         this.dataDeNascimento =motorista.getDataDeNascimento();
         this.telefone = motorista.getTelefone();
-        this.automovel = motorista.getAutomovel();
+        this.cnh = motorista.getCnh();
+     /*   this.automovel = new ArrayList<>();
+        automovel.addAll(motorista.getAutomovel().stream().map(AutomovelDto::new).toList());
 
-
+*/
     }
 
 
