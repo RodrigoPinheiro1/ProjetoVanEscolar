@@ -32,4 +32,11 @@ public class Responsavel {
 
     public Responsavel() {
     }
+
+    public Responsavel(String nome, Date dataNascimento, String cpf, EstadoCivil estadoCivil) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.estadoCivil = estadoCivil;
+    }
 }
