@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.controler.Forms;
+package com.van.vanescolarprojeto.controler.Forms.Motorista;
 
 import com.van.vanescolarprojeto.Modelo.Automovel;
 import com.van.vanescolarprojeto.Modelo.Motorista;
@@ -30,9 +30,7 @@ public class MotoristaForm {
 
 
 
-
     public Motorista cadastrar() {
-
 
         return new Motorista(nome,cpf,cnh,telefone,dataNascimento);
     }

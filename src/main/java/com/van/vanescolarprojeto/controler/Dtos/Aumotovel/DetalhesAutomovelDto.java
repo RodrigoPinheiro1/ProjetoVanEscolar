@@ -1,10 +1,11 @@
-package com.van.vanescolarprojeto.controler.Dtos;
+package com.van.vanescolarprojeto.controler.Dtos.Aumotovel;
 
 import com.van.vanescolarprojeto.Modelo.Automovel;
+import com.van.vanescolarprojeto.Modelo.Motorista;
 import lombok.Getter;
 
 @Getter
-public class AutomovelDto {
+public class DetalhesAutomovelDto {
 
 
     private Long id;
@@ -12,9 +13,11 @@ public class AutomovelDto {
     private String placa;
 
 
-    public AutomovelDto(Automovel automovel) {
+
+    public DetalhesAutomovelDto(Automovel automovel) {
         this.id = automovel.getId();
         this.modelo = automovel.getModelo();
         this.placa = automovel.getPlaca();
+
     }
 }

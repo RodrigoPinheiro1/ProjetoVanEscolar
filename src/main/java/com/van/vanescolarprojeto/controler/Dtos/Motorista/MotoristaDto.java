@@ -1,15 +1,10 @@
-package com.van.vanescolarprojeto.controler.Dtos;
+package com.van.vanescolarprojeto.controler.Dtos.Motorista;
 
-import com.van.vanescolarprojeto.Modelo.Automovel;
 import com.van.vanescolarprojeto.Modelo.Motorista;
 import lombok.Getter;
-import org.hibernate.hql.spi.id.cte.CteValuesListDeleteHandlerImpl;
 import org.springframework.data.domain.Page;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 public class MotoristaDto {
@@ -38,9 +33,11 @@ public class MotoristaDto {
     }
 
 
-    public static List<MotoristaDto> converter(List<Motorista> motorista) {
+    public static Page<MotoristaDto> converter(Page<Motorista> motorista) {
 
-        return motorista.stream().map(MotoristaDto::new).collect(Collectors.toList());
+       // return motorista.stream().map(MotoristaDto::new).collect(Collectors.toList());
+
+        return motorista.map(MotoristaDto::new);
 
     }
 }

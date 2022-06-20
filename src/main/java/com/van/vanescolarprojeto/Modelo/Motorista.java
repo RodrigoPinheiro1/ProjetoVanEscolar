@@ -23,12 +23,12 @@ public class Motorista {
     private String telefone;
     private Date dataDeNascimento;
 
-    @OneToMany
+    @OneToMany(mappedBy = "motorista",fetch = FetchType.LAZY)
     private List<Automovel> automovel;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private ContaSalario contaSalario;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private ParceiroMotorista parceiroMotorista;
 
     @OneToMany(mappedBy = "motorista" ,fetch = FetchType.LAZY)
@@ -54,4 +54,12 @@ public class Motorista {
         this.dataDeNascimento = dataDeNascimento;
         this.parceiroMotorista = parceiroMotorista;
     }
+
+
+    public void adicionar(Automovel automovel) {
+
+        automovel.setMotorista(this);
+        this.automovel.add(automovel);
+    }
+
 }

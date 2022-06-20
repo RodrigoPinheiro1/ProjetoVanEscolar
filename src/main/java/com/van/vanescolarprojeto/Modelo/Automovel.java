@@ -1,5 +1,6 @@
 package com.van.vanescolarprojeto.Modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,10 +20,24 @@ public class Automovel {
     private String modelo;
     private String placa;
 
+    @JsonIgnore
     @ManyToOne
     private Motorista motorista;
 
     public Automovel()  {
 
     }
+
+    public Automovel(String modelo, String placa) {
+        this.modelo = modelo;
+        this.placa = placa;
+    }
+
+    public void adicionar (Motorista motorista){
+
+        motorista.getAutomovel();
+
+    }
+
+
 }
