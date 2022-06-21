@@ -23,7 +23,7 @@ public class AutomovelForm {
 
         Motorista motorista = motoristaRepository.getReferenceById(id);
         Automovel automovel = new Automovel(modelo, placa);
-        motorista.adicionar(automovel);
+        motorista.adicionarAutomovel(automovel);
 
 
         return (automovel);

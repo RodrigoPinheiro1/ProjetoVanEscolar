@@ -30,12 +30,12 @@ public class MotoristaController {
     @Autowired
     private AutomovelRepository automovelRepository;
 
-
     @GetMapping
     @Transactional
-    public Page<MotoristaDto> listarNomeOuTudo(@RequestParam (required = false) String nome , //não obrigatorio.
-                                                @PageableDefault(sort = "id", direction = Sort.Direction.ASC,
-                                                        page = 0,size = 10)
+
+    public Page<MotoristaDto> listarNomeOuTudo(@RequestParam(required = false) String nome, //não obrigatorio.
+                                               @PageableDefault(sort = "id", direction = Sort.Direction.ASC,
+                                                       page = 0, size = 10)
                                                Pageable pageable) {
 
         if (nome == null) {
@@ -46,7 +46,6 @@ public class MotoristaController {
 
         return MotoristaDto.converter(motoristas);
     }
-
 
 
     @GetMapping("/{id}")
@@ -75,7 +74,6 @@ public class MotoristaController {
 
         return ResponseEntity.notFound().build();
     }
-
 
 
     @PostMapping

@@ -4,6 +4,7 @@ import com.van.vanescolarprojeto.Modelo.EstadoCivil;
 import com.van.vanescolarprojeto.Modelo.Responsavel;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
@@ -22,7 +23,9 @@ public class ResponsavelForm {
     @NotNull
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
-
+    @NotNull
+    @NotEmpty
+    private String telefone;
 
 
 
@@ -30,7 +33,7 @@ public class ResponsavelForm {
     public Responsavel cadastro(){
 
 
-        return new Responsavel(nome,dataNascimento,cpf,estadoCivil);
+        return new Responsavel(nome,dataNascimento,cpf,estadoCivil,telefone);
     }
 
 

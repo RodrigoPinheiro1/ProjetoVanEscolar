@@ -13,6 +13,7 @@ public class AlunoDto {
     private String nome;
     private Date dataNascimento;
     private String cpf;
+    private String telefone;
 
 
     public AlunoDto (Aluno aluno){
@@ -21,6 +22,7 @@ public class AlunoDto {
         nome = aluno.getNome();
         dataNascimento = aluno.getDataNascimento();
         cpf = aluno.getCpf();
+        telefone = aluno.getTelefone();
 
     }
 

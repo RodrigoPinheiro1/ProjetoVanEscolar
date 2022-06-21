@@ -21,19 +21,17 @@ public class ResponsavelDto {
     private String cpf;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
+    private String telefone;
 
 
-
-
-
-    public ResponsavelDto (Responsavel responsavel){
+    public ResponsavelDto(Responsavel responsavel) {
 
         this.id = responsavel.getId();
         this.nome = responsavel.getNome();
         this.dataNascimento = responsavel.getDataNascimento();
         this.cpf = responsavel.getCpf();
+        this.telefone = responsavel.getTelefone();
         estadoCivil = responsavel.getEstadoCivil();
-
 
 
     }

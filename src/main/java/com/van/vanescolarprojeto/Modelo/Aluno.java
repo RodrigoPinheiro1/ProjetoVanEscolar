@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,6 +20,24 @@ public class Aluno {
     private Date dataNascimento;
     private String cpf;
 
+    private String telefone;
+
+    @ManyToMany(mappedBy = "aluno")
+    private List<Responsavel> responsavel;
+
     public Aluno() {
     }
+
+    public Aluno(String nome, Date dataNascimento, String cpf,String telefone) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.telefone = telefone;
+    }
+
+    public Aluno(String nome, String telefone) {
+        this.nome = nome;
+        this.telefone = telefone;
+    }
 }
+

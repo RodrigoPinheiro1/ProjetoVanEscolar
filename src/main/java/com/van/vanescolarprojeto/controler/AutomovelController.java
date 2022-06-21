@@ -34,10 +34,10 @@ public class AutomovelController {
                                                           @RequestBody @Valid AutomovelForm automovelForm,
                                                           UriComponentsBuilder uriComponentsBuilder) {
         Automovel automovel = automovelForm.cadastrar(motoristaRepository, id);
-        automovelRepository.save(automovel);
+       automovelRepository.save(automovel);
 
-        URI uri = uriComponentsBuilder.path("/motorista/automovel/{id}").buildAndExpand(automovel.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        URI uri = uriComponentsBuilder.path("/motorista/automoveis/{id}").buildAndExpand(automovel.getId()).toUri();
+        return ResponseEntity.created(uri).body(new DetalhesAutomovelDto(automovel));
     }
 
     @GetMapping("/{id}")
