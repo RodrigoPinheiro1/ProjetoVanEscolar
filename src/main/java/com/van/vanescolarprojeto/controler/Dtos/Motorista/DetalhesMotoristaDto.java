@@ -1,8 +1,10 @@
 package com.van.vanescolarprojeto.controler.Dtos.Motorista;
 
 import com.van.vanescolarprojeto.Modelo.Motorista;
+import com.van.vanescolarprojeto.Modelo.ParceiroMotorista;
 import com.van.vanescolarprojeto.Repository.MotoristaRepository;
 import com.van.vanescolarprojeto.controler.Dtos.Aumotovel.DetalhesAutomovelDto;
+import com.van.vanescolarprojeto.controler.Dtos.ParceiroMotorista.ParceiroMotoristaDto;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class DetalhesMotoristaDto {
 
      private List<DetalhesAutomovelDto> automovel;
 
+     private List<ParceiroMotoristaDto> parceiroMotoristaDto;
+
 
     public DetalhesMotoristaDto(Motorista motorista) {
 
@@ -33,6 +37,8 @@ public class DetalhesMotoristaDto {
         this.cnh = motorista.getCnh();
         this.automovel = new ArrayList<>();
         automovel.addAll(motorista.getAutomovel().stream().map(DetalhesAutomovelDto::new).toList());
+        parceiroMotoristaDto = new ArrayList<>();
+        parceiroMotoristaDto.addAll(motorista.getParceiroMotorista().stream().map(ParceiroMotoristaDto::new).toList());
 
 
     }

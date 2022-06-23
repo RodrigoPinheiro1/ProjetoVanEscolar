@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,12 +31,13 @@ public class Motorista {
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     private ContaSalario contaSalario;
+
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
-    private ParceiroMotorista parceiroMotorista;
+    @ManyToMany
+    private List<ParceiroMotorista> parceiroMotorista = new ArrayList<>();
 
     @OneToMany(mappedBy = "motorista" ,fetch = FetchType.LAZY)
-    private List<Responsavel>responsavel;
+    private List<Responsavel>responsavel = new ArrayList<>();
 
 
     public Motorista(String nome, String cpf, String cnh, String telefone, Date dataDeNascimento) {
@@ -51,7 +53,7 @@ public class Motorista {
     public Motorista() {
     }
 
-    public Motorista(String nome, String telefone, Date dataDeNascimento, ParceiroMotorista parceiroMotorista) {
+    public Motorista(String nome, String telefone, Date dataDeNascimento, List<ParceiroMotorista> parceiroMotorista) {
         this.nome = nome;
         this.telefone = telefone;
         this.dataDeNascimento = dataDeNascimento;
@@ -69,6 +71,15 @@ public class Motorista {
 
         responsavel.setMotorista(this);
         this.responsavel.add(responsavel);
+    }
+
+    public void adicionar(ParceiroMotorista parceiroMotorista) {
+        List<Motorista> motorista = new ArrayList<>();
+
+        parceiroMotorista.setMotorista(motorista);
+        this.parceiroMotorista.add(parceiroMotorista); //adiciona na tabela do relacionamento many to many
+
+
     }
 
 }

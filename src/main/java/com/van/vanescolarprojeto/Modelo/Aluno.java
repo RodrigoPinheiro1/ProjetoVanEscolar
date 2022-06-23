@@ -22,7 +22,7 @@ public class Aluno {
 
     private String telefone;
 
-    @ManyToMany(mappedBy = "aluno")
+    @ManyToMany(mappedBy = "aluno",fetch = FetchType.LAZY)
     private List<Responsavel> responsavel;
 
     public Aluno() {

@@ -3,6 +3,7 @@ package com.van.vanescolarprojeto.controler;
 import com.van.vanescolarprojeto.Modelo.Motorista;
 import com.van.vanescolarprojeto.Repository.AutomovelRepository;
 import com.van.vanescolarprojeto.Repository.MotoristaRepository;
+import com.van.vanescolarprojeto.controler.Dtos.Motorista.DetalhesMotoristaDto;
 import com.van.vanescolarprojeto.controler.Dtos.Motorista.MotoristaDto;
 import com.van.vanescolarprojeto.controler.Forms.Motorista.MotoristaAtualizarForm;
 import com.van.vanescolarprojeto.controler.Forms.Motorista.MotoristaForm;
@@ -50,11 +51,11 @@ public class MotoristaController {
 
     @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity<MotoristaDto> listar(@PathVariable Long id) {
+    public ResponseEntity<DetalhesMotoristaDto> listar(@PathVariable Long id) {
         Optional<Motorista> motorista = motoristaRepository.findById(id);
         if (motorista.isPresent()) {
 
-            return ResponseEntity.ok(new MotoristaDto(motorista.get()));
+            return ResponseEntity.ok(new DetalhesMotoristaDto(motorista.get()));
         }
 
         return ResponseEntity.notFound().build();

@@ -31,7 +31,7 @@ public class Responsavel {
     @ManyToOne
     private Motorista motorista;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     private List<Aluno> aluno = new ArrayList<>();
 
 
