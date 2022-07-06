@@ -25,6 +25,10 @@ public class Motorista {
     private String telefone;
     private Date dataDeNascimento;
 
+    private String senha ;
+
+    private String email;
+
     @OneToMany(mappedBy = "motorista",fetch = FetchType.LAZY)
     private List<Automovel> automovel;
 
@@ -82,4 +86,12 @@ public class Motorista {
 
     }
 
+    public void remover(ParceiroMotorista parceiroMotorista) {
+
+
+        this.parceiroMotorista.add(parceiroMotorista);
+        parceiroMotorista.getMotorista().remove(this);
+
+
+    }
 }

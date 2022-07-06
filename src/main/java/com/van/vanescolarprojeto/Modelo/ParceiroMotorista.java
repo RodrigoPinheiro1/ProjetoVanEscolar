@@ -22,10 +22,13 @@ public class ParceiroMotorista {
     private String telefone;
     private Date dataNascimento;
     private String cpf;
+    private String senha ;
+
+    private String email;
 
 
-
-    @ManyToMany (mappedBy = "parceiroMotorista", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ManyToMany (targetEntity = Motorista.class,mappedBy = "parceiroMotorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Motorista> motorista = new ArrayList<>();
 
 
@@ -44,10 +47,19 @@ public class ParceiroMotorista {
     public ParceiroMotorista() {
     }
 
-    public void adicionar(Motorista motorista) {
-        List<ParceiroMotorista> parceiroMotoristas = new ArrayList<>();
 
-        motorista.setParceiroMotorista(parceiroMotoristas);
+    public void remover(Motorista motorista) {
+
+
+        this.motorista.add(motorista);
+        motorista.getParceiroMotorista().remove(this);
+
+    }
+
+    public void adicionar(Motorista motorista) {
+        List<ParceiroMotorista> parceiroMotorista = new ArrayList<>();
+
+        motorista.setParceiroMotorista(parceiroMotorista);
         this.motorista.add(motorista);
 
     }

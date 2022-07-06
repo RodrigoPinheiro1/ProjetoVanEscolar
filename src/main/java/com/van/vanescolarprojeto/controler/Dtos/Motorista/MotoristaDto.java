@@ -15,6 +15,7 @@ public class MotoristaDto {
     private String telefone;
     private String cnh;
 
+
    // private List<AutomovelDto> automovel;
 
 

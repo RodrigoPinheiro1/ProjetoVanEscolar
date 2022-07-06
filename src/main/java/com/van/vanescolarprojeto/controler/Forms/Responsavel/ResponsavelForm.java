@@ -7,10 +7,13 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Date;
 
 @Getter
+@Setter
 public class ResponsavelForm {
 
 
@@ -20,20 +23,26 @@ public class ResponsavelForm {
     private Date dataNascimento;
     @NotNull
     private String cpf;
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private EstadoCivil estadoCivil;
+
     @NotNull
     @NotEmpty
     private String telefone;
 
+    @NotNull
+    private String senha;
 
+    @NotEmpty
+    private String email;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private EstadoCivil estadoCivil;
 
-    public Responsavel cadastro(){
+    public Responsavel cadastro() {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(senha);
 
-
-        return new Responsavel(nome,dataNascimento,cpf,estadoCivil,telefone);
+        return new Responsavel(nome, dataNascimento, cpf, telefone, encodedPassword, email, estadoCivil);
     }
 
 

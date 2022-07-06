@@ -31,9 +31,7 @@ public class ResponsavelDto {
         this.dataNascimento = responsavel.getDataNascimento();
         this.cpf = responsavel.getCpf();
         this.telefone = responsavel.getTelefone();
-        estadoCivil = responsavel.getEstadoCivil();
-
-
+        this.estadoCivil = responsavel.getEstadoCivil();
     }
 
 

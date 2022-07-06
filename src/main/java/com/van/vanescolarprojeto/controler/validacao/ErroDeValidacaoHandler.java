@@ -26,7 +26,7 @@ public class ErroDeValidacaoHandler {
 
         List<ErroDeFormularioDto> erroDeFormularioDtos = new ArrayList<>();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors(); // getBindingResult faz uma vinculação com o erro
-        // get field erro pega qualquer erro que estier no primeiro
+        // get field erro pega qualquer erro que estiver no primeiro
         fieldErrors.forEach(fieldError -> {                    //localeContext serve para ver a posicção atual da list
             String mensagem = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
             ErroDeFormularioDto erro = new ErroDeFormularioDto(fieldError.getField(),mensagem);

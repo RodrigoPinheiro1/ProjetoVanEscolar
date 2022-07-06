@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.controler;
+package com.van.vanescolarprojeto.controler.Controllers;
 
 import com.van.vanescolarprojeto.Modelo.Automovel;
 import com.van.vanescolarprojeto.Modelo.Motorista;
@@ -71,7 +71,7 @@ public class AutomovelController {
 
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<DetalhesAutomovelDto> atualizarAutomovel(@PathVariable Long id,
                                                                    @RequestBody @Valid AtualizarAutomovelForm

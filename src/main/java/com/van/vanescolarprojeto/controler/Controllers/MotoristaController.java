@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.controler;
+package com.van.vanescolarprojeto.controler.Controllers;
 
 import com.van.vanescolarprojeto.Modelo.Motorista;
 import com.van.vanescolarprojeto.Repository.AutomovelRepository;
