@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.controler.secutiry;
+package com.van.vanescolarprojeto.controler.secutiry.Responsavel;
 
 import com.van.vanescolarprojeto.Modelo.Responsavel;
 import io.jsonwebtoken.Claims;
@@ -20,7 +20,7 @@ public class TokenService {
     private String secret;
 
 
-    public String gerarToken(Authentication authenticate) {
+    public String gerarTokenResponsavel(Authentication authenticate) {
         Responsavel logado = (Responsavel) authenticate.getPrincipal();
         Date hoje = new Date();
         Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
@@ -29,7 +29,7 @@ public class TokenService {
                 .setSubject(logado.getId().toString())  //dono de quem pertence a sessao
                 .setIssuedAt(hoje) //data quando foi gerado
                 .setExpiration(dataExpiracao) //tempo de expiração
-                .signWith(SignatureAlgorithm.HS256, secret) // HS256,gera o algoritmo de cripografia   cripocrafia do token obs "buscar um programa que faça uma senha aleatoria grande de numeros"
+                .signWith(SignatureAlgorithm.HS256, secret) // HS256,ger;a o algoritmo de cripografia   cripocrafia do token obs "buscar um programa que faça uma senha aleatoria grande de numeros"
                 .compact(); //compacta tudo,
     }
 

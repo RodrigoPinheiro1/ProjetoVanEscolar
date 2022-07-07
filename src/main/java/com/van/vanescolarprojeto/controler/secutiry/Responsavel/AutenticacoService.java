@@ -1,6 +1,8 @@
-package com.van.vanescolarprojeto.controler.secutiry;
+package com.van.vanescolarprojeto.controler.secutiry.Responsavel;
 
+import com.van.vanescolarprojeto.Modelo.Motorista;
 import com.van.vanescolarprojeto.Modelo.Responsavel;
+import com.van.vanescolarprojeto.Repository.MotoristaRepository;
 import com.van.vanescolarprojeto.Repository.ResponsavelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,13 +19,20 @@ public class AutenticacoService implements UserDetailsService {
     @Autowired
     private ResponsavelRepository responsavelRepository;
 
+    @Autowired
+    private MotoristaRepository motoristaRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Responsavel> responsavel = responsavelRepository.findByEmail(username);
 
-        if (responsavel.isPresent()){
+        Optional<Motorista> motorista = motoristaRepository.findByEmail(username);
 
+        if (responsavel.isPresent()){
             return responsavel.get();
+        }else if (motorista.isPresent()){
+
+            return motorista.get();
         }
         throw new UsernameNotFoundException("dados invalidos");
     }

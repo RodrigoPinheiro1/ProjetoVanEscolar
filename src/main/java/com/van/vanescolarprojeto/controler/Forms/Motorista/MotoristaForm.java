@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,22 +17,32 @@ import java.util.List;
 @Setter
 public class MotoristaForm {
 
-    @NotNull @NotEmpty @Length(min = 5)
-    private String nome ;
-    @NotNull @NotEmpty @Length(min = 11)
+    @NotNull
+    @NotEmpty
+    @Length(min = 5)
+    private String nome;
+    @NotNull
+    @NotEmpty
+    @Length(min = 11)
     private String telefone;
-    @NotNull @NotEmpty @Length(min = 11)
+    @NotNull
+    @NotEmpty
+    @Length(min = 11)
     private String cpf;
-    @NotNull @NotEmpty
+    @NotNull
+    @NotEmpty
     private String cnh;
     private Date dataNascimento;
 
-    private List<Automovel> automovel= new ArrayList<>();
+    private String senha;
+
+    private String email;
 
 
 
     public Motorista cadastrar() {
-
-        return new Motorista(nome,cpf,cnh,telefone,dataNascimento);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encode = bCryptPasswordEncoder.encode(senha);
+        return new Motorista(nome, cpf, cnh, telefone, dataNascimento, encode, email);
     }
 }

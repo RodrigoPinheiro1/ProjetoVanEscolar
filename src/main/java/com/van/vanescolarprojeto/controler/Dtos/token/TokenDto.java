@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.controler.Dtos;
+package com.van.vanescolarprojeto.controler.Dtos.token;
 
 import lombok.Getter;
 

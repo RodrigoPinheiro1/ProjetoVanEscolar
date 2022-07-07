@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.controler.Forms;
+package com.van.vanescolarprojeto.controler.Forms.Logins;
 
 import lombok.Getter;
 import lombok.Setter;

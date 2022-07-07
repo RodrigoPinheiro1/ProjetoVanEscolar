@@ -1,6 +1,9 @@
 package com.van.vanescolarprojeto.controler.secutiry;
 
+import com.van.vanescolarprojeto.Repository.MotoristaRepository;
 import com.van.vanescolarprojeto.Repository.ResponsavelRepository;
+import com.van.vanescolarprojeto.controler.secutiry.Motorista.TokenServiceMotorista;
+import com.van.vanescolarprojeto.controler.secutiry.Responsavel.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +27,13 @@ public class SecutiryConfigurations {
     @Autowired
     private ResponsavelRepository responsavelRepository;
 
+    @Autowired
+    private TokenServiceMotorista tokenServiceMotorista;
+
+    @Autowired
+    private MotoristaRepository motoristaRepository;
+
+
     @Bean //geração do bCrypt
     protected PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
@@ -37,14 +47,16 @@ public class SecutiryConfigurations {
     @Bean //controle acesso, de perfil
     protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests() //autorização de metodos
-                .antMatchers(HttpMethod.POST, "/motorista").permitAll()
                 .antMatchers(HttpMethod.POST, "/responsavel").permitAll()
                 .antMatchers(HttpMethod.POST, "/parceiroMotorista").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/motorista").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
                 .anyRequest().authenticated() //qualquer outra requeste, precisa estar autenticado,
                 .and().csrf().disable() //csrf protecao contra hackers, nao necessario pelos tokens,
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //politica da api, statelles,
-                .and().addFilterBefore(new AutenticacaoViaToken(responsavelRepository, tokenService),
+                .and().addFilterBefore(new AutenticacaoViaToken(responsavelRepository, tokenService,
+                                tokenServiceMotorista,
+                                motoristaRepository),
                         UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();

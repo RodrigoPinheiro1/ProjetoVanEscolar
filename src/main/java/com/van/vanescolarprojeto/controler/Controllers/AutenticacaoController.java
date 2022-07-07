@@ -1,9 +1,9 @@
 package com.van.vanescolarprojeto.controler.Controllers;
 
-import antlr.Token;
-import com.van.vanescolarprojeto.controler.Dtos.TokenDto;
-import com.van.vanescolarprojeto.controler.Forms.LoginForm;
-import com.van.vanescolarprojeto.controler.secutiry.TokenService;
+import com.van.vanescolarprojeto.controler.Dtos.token.TokenDto;
+import com.van.vanescolarprojeto.controler.Forms.Logins.LoginForm;
+import com.van.vanescolarprojeto.controler.secutiry.Motorista.TokenServiceMotorista;
+import com.van.vanescolarprojeto.controler.secutiry.Responsavel.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,15 +21,16 @@ public class AutenticacaoController {
     @Autowired
     private TokenService tokenService;
     @Autowired
+    private TokenServiceMotorista tokenServiceMotorista;
+    @Autowired
     private AuthenticationManager authenticationManager;
 
-
-    @PostMapping
-    public ResponseEntity<TokenDto> autenticar(@RequestBody LoginForm form) {
+    @PostMapping("/responsavel")
+    public ResponseEntity<TokenDto> autenticarResponsavel(@RequestBody LoginForm form) {
         UsernamePasswordAuthenticationToken dadosLogin = form.converter();
         try {
             Authentication authentication = authenticationManager.authenticate(dadosLogin);
-            String token = tokenService.gerarToken(authentication);
+            String token = tokenService.gerarTokenResponsavel(authentication);
 
             return ResponseEntity.ok(new TokenDto(token,"Bearer"));
         }catch (AuthenticationException e){
@@ -38,4 +39,19 @@ public class AutenticacaoController {
         }
         return ResponseEntity.ok().build();
     }
+    @PostMapping("/motorista")
+    public ResponseEntity<TokenDto> autenticarMotorista (@RequestBody LoginForm form) {
+       UsernamePasswordAuthenticationToken dadosLogin = form.converter();
+        try {
+            Authentication authenticate = authenticationManager.authenticate(dadosLogin);
+            String token = tokenServiceMotorista.gerarTokenMotorista(authenticate);
+            return ResponseEntity.ok(new TokenDto(token,"Bearer"));
+        }catch (AuthenticationException e){
+            e.printStackTrace();
+            ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().build();
+    }
+
 }
+
