@@ -7,8 +7,6 @@ import com.van.vanescolarprojeto.controler.Dtos.Motorista.DetalhesMotoristaDto;
 import com.van.vanescolarprojeto.controler.Dtos.Motorista.MotoristaDto;
 import com.van.vanescolarprojeto.controler.Forms.Motorista.MotoristaAtualizarForm;
 import com.van.vanescolarprojeto.controler.Forms.Motorista.MotoristaForm;
-import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 

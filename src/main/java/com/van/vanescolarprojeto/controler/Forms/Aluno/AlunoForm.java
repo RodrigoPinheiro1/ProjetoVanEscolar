@@ -3,10 +3,10 @@ package com.van.vanescolarprojeto.controler.Forms.Aluno;
 import com.van.vanescolarprojeto.Modelo.Aluno;
 import com.van.vanescolarprojeto.Modelo.Responsavel;
 import com.van.vanescolarprojeto.Repository.ResponsavelRepository;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Getter

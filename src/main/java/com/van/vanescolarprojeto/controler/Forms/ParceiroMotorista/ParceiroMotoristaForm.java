@@ -3,11 +3,12 @@ package com.van.vanescolarprojeto.controler.Forms.ParceiroMotorista;
 import com.van.vanescolarprojeto.Modelo.Motorista;
 import com.van.vanescolarprojeto.Modelo.ParceiroMotorista;
 import com.van.vanescolarprojeto.Repository.MotoristaRepository;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Getter
@@ -21,12 +22,15 @@ public class ParceiroMotoristaForm {
     private String telefone;
     private Date dataNascimento;
     private String cpf;
+    private String email;
+    private String senha;
 
 
     public ParceiroMotorista cadastroComMotorista(Long id, MotoristaRepository motoristaRepository) {
-
         Motorista motorista = motoristaRepository.getReferenceById(id);
-        ParceiroMotorista parceiroMotorista = new ParceiroMotorista(nome, telefone, dataNascimento, cpf);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encode = bCryptPasswordEncoder.encode(senha);
+        ParceiroMotorista parceiroMotorista = new ParceiroMotorista(nome, telefone, dataNascimento, cpf, email,encode);
 
         motorista.adicionar(parceiroMotorista);
 
@@ -35,8 +39,9 @@ public class ParceiroMotoristaForm {
     }
 
     public ParceiroMotorista cadastrar() {
-
-        return new ParceiroMotorista(nome, telefone, dataNascimento, cpf);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encode = bCryptPasswordEncoder.encode(senha);
+        return new ParceiroMotorista(nome, telefone, dataNascimento , cpf, email,encode);
 
     }
 }

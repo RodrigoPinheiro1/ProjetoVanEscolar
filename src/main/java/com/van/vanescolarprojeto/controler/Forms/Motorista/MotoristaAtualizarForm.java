@@ -2,13 +2,15 @@ package com.van.vanescolarprojeto.controler.Forms.Motorista;
 
 import com.van.vanescolarprojeto.Modelo.Motorista;
 import com.van.vanescolarprojeto.Repository.MotoristaRepository;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 @Setter
+@Getter
 public class MotoristaAtualizarForm {
     @NotEmpty
     @NotNull

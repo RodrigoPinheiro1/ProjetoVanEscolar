@@ -3,12 +3,13 @@ package com.van.vanescolarprojeto.controler.Forms.Responsavel;
 import com.van.vanescolarprojeto.Modelo.EstadoCivil;
 import com.van.vanescolarprojeto.Modelo.Responsavel;
 import com.van.vanescolarprojeto.Repository.ResponsavelRepository;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -19,7 +20,7 @@ public class AtualizaResponsavelForm {
     @NotNull
     @Length (min = 11, max = 11)
     private String telefone;
-    @Enumerated (EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
 
 

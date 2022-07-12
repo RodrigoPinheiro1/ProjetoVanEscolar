@@ -8,13 +8,13 @@ import com.van.vanescolarprojeto.controler.Dtos.Aumotovel.DetalhesAutomovelDto;
 import com.van.vanescolarprojeto.controler.Dtos.Motorista.DetalhesMotoristaDto;
 import com.van.vanescolarprojeto.controler.Forms.Automovel.AtualizarAutomovelForm;
 import com.van.vanescolarprojeto.controler.Forms.Automovel.AutomovelForm;
-import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 

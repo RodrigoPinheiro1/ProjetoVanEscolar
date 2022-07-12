@@ -3,7 +3,6 @@ package com.van.vanescolarprojeto.controler.Forms.Aluno;
 
 import com.van.vanescolarprojeto.Modelo.Aluno;
 import com.van.vanescolarprojeto.Repository.AlunoRepository;
-import jakarta.websocket.server.ServerEndpoint;
 import lombok.Getter;
 import lombok.Setter;
 

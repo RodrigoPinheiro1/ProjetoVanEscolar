@@ -4,10 +4,10 @@ import com.van.vanescolarprojeto.Modelo.EstadoCivil;
 import com.van.vanescolarprojeto.Modelo.Motorista;
 import com.van.vanescolarprojeto.Modelo.Responsavel;
 import com.van.vanescolarprojeto.controler.Dtos.Aluno.AlunoDto;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.Getter;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

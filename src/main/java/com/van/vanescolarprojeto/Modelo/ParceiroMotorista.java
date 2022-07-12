@@ -1,19 +1,21 @@
 package com.van.vanescolarprojeto.Modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class ParceiroMotorista {
+public class ParceiroMotorista implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,22 +24,25 @@ public class ParceiroMotorista {
     private String telefone;
     private Date dataNascimento;
     private String cpf;
-    private String senha ;
+    private String senha;
 
     private String email;
 
-
+    @ManyToMany
+    private List<Perfil> perfilsParceiro = new ArrayList<>();
     @JsonIgnore
-    @ManyToMany (targetEntity = Motorista.class,mappedBy = "parceiroMotorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Motorista.class, mappedBy = "parceiroMotorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Motorista> motorista = new ArrayList<>();
 
 
-    public ParceiroMotorista(String nome, String telefone, Date dataNascimento, String cpf) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.dataNascimento = dataNascimento;
-        this.cpf = cpf;
-    }
+        public ParceiroMotorista(String nome, String telefone, Date dataNascimento, String cpf,String email, String senha) {
+            this.nome = nome;
+            this.telefone = telefone;
+            this.dataNascimento = dataNascimento;
+            this.cpf = cpf;
+            this.email= email;
+            this.senha = senha;
+        }
 
     public ParceiroMotorista(String nome, String telefone) {
         this.nome = nome;
@@ -47,20 +52,46 @@ public class ParceiroMotorista {
     public ParceiroMotorista() {
     }
 
-
-    public void remover(Motorista motorista) {
-
-
-        this.motorista.add(motorista);
-        motorista.getParceiroMotorista().remove(this);
-
-    }
-
     public void adicionar(Motorista motorista) {
         List<ParceiroMotorista> parceiroMotorista = new ArrayList<>();
 
         motorista.setParceiroMotorista(parceiroMotorista);
         this.motorista.add(motorista);
 
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return perfilsParceiro;
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

@@ -3,7 +3,8 @@ package com.van.vanescolarprojeto.controler.Controllers;
 import com.van.vanescolarprojeto.controler.Dtos.token.TokenDto;
 import com.van.vanescolarprojeto.controler.Forms.Logins.LoginForm;
 import com.van.vanescolarprojeto.controler.secutiry.Motorista.TokenServiceMotorista;
-import com.van.vanescolarprojeto.controler.secutiry.Responsavel.TokenService;
+import com.van.vanescolarprojeto.controler.secutiry.ParceiroMotorista.TokenServiceParceiroMotorista;
+import com.van.vanescolarprojeto.controler.secutiry.Responsavel.TokenServiceResponsavel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AutenticacaoController {
     @Autowired
-    private TokenService tokenService;
+    private TokenServiceResponsavel tokenServiceResponsavel;
     @Autowired
     private TokenServiceMotorista tokenServiceMotorista;
+    @Autowired
+    private TokenServiceParceiroMotorista tokenServiceParceiroMotorista;
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -30,23 +33,38 @@ public class AutenticacaoController {
         UsernamePasswordAuthenticationToken dadosLogin = form.converter();
         try {
             Authentication authentication = authenticationManager.authenticate(dadosLogin);
-            String token = tokenService.gerarTokenResponsavel(authentication);
+            String token = tokenServiceResponsavel.gerarTokenResponsavel(authentication);
 
-            return ResponseEntity.ok(new TokenDto(token,"Bearer"));
-        }catch (AuthenticationException e){
+            return ResponseEntity.ok(new TokenDto(token, "Bearer"));
+        } catch (AuthenticationException e) {
             e.printStackTrace();
             ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok().build();
     }
+
     @PostMapping("/motorista")
-    public ResponseEntity<TokenDto> autenticarMotorista (@RequestBody LoginForm form) {
-       UsernamePasswordAuthenticationToken dadosLogin = form.converter();
+    public ResponseEntity<TokenDto> autenticarMotorista(@RequestBody LoginForm form) {
+        UsernamePasswordAuthenticationToken dadosLogin = form.converter();
         try {
             Authentication authenticate = authenticationManager.authenticate(dadosLogin);
             String token = tokenServiceMotorista.gerarTokenMotorista(authenticate);
-            return ResponseEntity.ok(new TokenDto(token,"Bearer"));
-        }catch (AuthenticationException e){
+            return ResponseEntity.ok(new TokenDto(token, "Bearer"));
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/parceiro")
+    public ResponseEntity<TokenDto> autenticarParceiro(@RequestBody LoginForm form) {
+        UsernamePasswordAuthenticationToken dadosLogin = form.converter();
+        try {
+            Authentication authenticate = authenticationManager.authenticate(dadosLogin);
+            String token = tokenServiceParceiroMotorista.gerarTokenParceiro(authenticate);
+            return ResponseEntity.ok(new TokenDto(token, "Bearer"));
+        } catch (AuthenticationException e) {
             e.printStackTrace();
             ResponseEntity.badRequest().build();
         }

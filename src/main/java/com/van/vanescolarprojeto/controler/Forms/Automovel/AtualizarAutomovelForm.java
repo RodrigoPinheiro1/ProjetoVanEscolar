@@ -2,13 +2,14 @@ package com.van.vanescolarprojeto.controler.Forms.Automovel;
 
 import com.van.vanescolarprojeto.Modelo.Automovel;
 import com.van.vanescolarprojeto.Repository.AutomovelRepository;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
 import java.lang.management.LockInfo;
 
 @Setter
+@Getter
 public class AtualizarAutomovelForm {
 
     @NotEmpty
