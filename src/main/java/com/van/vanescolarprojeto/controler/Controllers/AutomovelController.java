@@ -19,7 +19,7 @@ import java.net.URI;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/automoveis")
+@RequestMapping(value = "motorista/automoveis")
 public class AutomovelController {
 
     @Autowired

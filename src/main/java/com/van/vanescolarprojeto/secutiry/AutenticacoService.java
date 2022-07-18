@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.controler.secutiry;
+package com.van.vanescolarprojeto.secutiry;
 
 import com.van.vanescolarprojeto.Modelo.Motorista;
 import com.van.vanescolarprojeto.Modelo.ParceiroMotorista;

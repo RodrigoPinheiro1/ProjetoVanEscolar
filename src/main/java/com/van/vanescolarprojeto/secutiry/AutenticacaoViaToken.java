@@ -1,10 +1,6 @@
-package com.van.vanescolarprojeto.controler.secutiry;
+package com.van.vanescolarprojeto.secutiry;
 
-import com.van.vanescolarprojeto.Modelo.Motorista;
 import com.van.vanescolarprojeto.Modelo.Usuario;
-import com.van.vanescolarprojeto.Repository.MotoristaRepository;
-import com.van.vanescolarprojeto.Repository.ParceiroMotoristaRepository;
-import com.van.vanescolarprojeto.Repository.ResponsavelRepository;
 import com.van.vanescolarprojeto.Repository.UsuarioRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

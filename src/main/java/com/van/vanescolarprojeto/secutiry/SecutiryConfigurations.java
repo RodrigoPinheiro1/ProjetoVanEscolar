@@ -1,9 +1,10 @@
-package com.van.vanescolarprojeto.controler.secutiry;
+package com.van.vanescolarprojeto.secutiry;
 
 import com.van.vanescolarprojeto.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -18,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @Configuration
+@Profile("prod")
 public class SecutiryConfigurations {
     @Autowired
     private  UsuarioRepository usuarioRepository;
@@ -43,15 +45,26 @@ public class SecutiryConfigurations {
                 .antMatchers(HttpMethod.POST, "/responsavel").permitAll()
                 .antMatchers(HttpMethod.POST, "/parceiroMotorista").permitAll()
                 .antMatchers(HttpMethod.POST, "/motorista").permitAll()
-                .antMatchers(HttpMethod.GET, "/actuator/**").permitAll() //MUDAR pois actuator devolve informações sensiveis da aplicação,
                 .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/motorista/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/parceiroMotorista/*").permitAll()
                 .antMatchers(HttpMethod.PUT, "/responsavel/*").hasRole("RESPONSAVEL")
                 .antMatchers(HttpMethod.POST, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
                 .antMatchers(HttpMethod.PUT, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
-                .antMatchers(HttpMethod.GET, "/motorista/*").hasRole("RESPONSAVEL")
-                .antMatchers(HttpMethod.GET, "/parceiroMotorista/*").hasRole("PARCEIRO")
-                .antMatchers(HttpMethod.PUT, "/motorista/*").hasRole("MOTORISTA")
+                .antMatchers(HttpMethod.DELETE, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
+
+                .antMatchers(HttpMethod.PUT, "/parceiroMotorista/*").hasRole("PARCEIRO")
+
+                .antMatchers(HttpMethod.POST, "/motorista/automoveis/*").hasRole("MOTORISTA")
+                .antMatchers(HttpMethod.PUT, "/motorista/automoveis/*").hasRole("MOTORISTA")
+                .antMatchers(HttpMethod.DELETE, "/motorista/automoveis/*").hasRole("MOTORISTA")
+                .antMatchers(HttpMethod.GET, "/responsavel/*").hasRole("MOTORISTA")
+
+                .antMatchers(HttpMethod.GET, "/actuator/**").hasRole("MODERADOR") //MUDAR pois actuator devolve informações sensiveis da aplicação,
+                .antMatchers(HttpMethod.DELETE, "/motorista/*").hasRole("MODERADOR")
+                .antMatchers(HttpMethod.DELETE, "/responsavel/*").hasRole("MODERADOR")
+                .antMatchers(HttpMethod.DELETE, "/parceiroMotorista/*").hasRole("MODERADOR")
                 .anyRequest().authenticated() //qualquer outra requeste, precisa estar autenticado,
                 .and().csrf().disable() //csrf protecao contra hackers, nao necessario pelos tokens,
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //politica da api, statelles,

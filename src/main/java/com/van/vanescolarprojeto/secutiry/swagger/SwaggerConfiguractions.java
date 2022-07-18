@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.controler.secutiry.swagger;
+package com.van.vanescolarprojeto.secutiry.swagger;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
