@@ -1,11 +1,6 @@
 package com.van.vanescolarprojeto.controler.secutiry;
 
-import com.van.vanescolarprojeto.Repository.MotoristaRepository;
-import com.van.vanescolarprojeto.Repository.ParceiroMotoristaRepository;
-import com.van.vanescolarprojeto.Repository.ResponsavelRepository;
-import com.van.vanescolarprojeto.controler.secutiry.Motorista.TokenServiceMotorista;
-import com.van.vanescolarprojeto.controler.secutiry.ParceiroMotorista.TokenServiceParceiroMotorista;
-import com.van.vanescolarprojeto.controler.secutiry.Responsavel.TokenServiceResponsavel;
+import com.van.vanescolarprojeto.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,23 +19,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @Configuration
 public class SecutiryConfigurations {
-
     @Autowired
-    private TokenServiceResponsavel tokenServiceResponsavel;
+    private  UsuarioRepository usuarioRepository;
     @Autowired
-    private ResponsavelRepository responsavelRepository;
-
-    @Autowired
-    private TokenServiceMotorista tokenServiceMotorista;
-
-    @Autowired
-    private MotoristaRepository motoristaRepository;
-
-
-    @Autowired
-    private  ParceiroMotoristaRepository parceiroMotoristaRepository;
-    @Autowired
-    private  TokenServiceParceiroMotorista tokenServiceParceiroMotorista;
+    private TokenService tokenService;
 
 
 
@@ -48,6 +30,7 @@ public class SecutiryConfigurations {
     protected PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     @Bean //configuração autenticação
     protected AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -63,17 +46,21 @@ public class SecutiryConfigurations {
                 .antMatchers(HttpMethod.GET, "/actuator/**").permitAll() //MUDAR pois actuator devolve informações sensiveis da aplicação,
                 .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+                .antMatchers(HttpMethod.PUT, "/responsavel/*").hasRole("RESPONSAVEL")
+                .antMatchers(HttpMethod.POST, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
+                .antMatchers(HttpMethod.PUT, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
+                .antMatchers(HttpMethod.GET, "/motorista/*").hasRole("RESPONSAVEL")
+                .antMatchers(HttpMethod.GET, "/parceiroMotorista/*").hasRole("PARCEIRO")
+                .antMatchers(HttpMethod.PUT, "/motorista/*").hasRole("MOTORISTA")
                 .anyRequest().authenticated() //qualquer outra requeste, precisa estar autenticado,
                 .and().csrf().disable() //csrf protecao contra hackers, nao necessario pelos tokens,
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //politica da api, statelles,
-                .and().addFilterBefore(new AutenticacaoViaToken(responsavelRepository, tokenServiceResponsavel,
-                                tokenServiceMotorista,
-                                motoristaRepository,
-                                parceiroMotoristaRepository, tokenServiceParceiroMotorista),
+                .and().addFilterBefore(new AutenticacaoViaToken(usuarioRepository,tokenService),
                         UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }
+
     @Bean //configurações de recursos estaticos (imagens, etc.)
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");

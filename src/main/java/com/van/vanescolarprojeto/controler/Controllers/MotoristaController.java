@@ -8,6 +8,7 @@ import com.van.vanescolarprojeto.controler.Dtos.Motorista.MotoristaDto;
 import com.van.vanescolarprojeto.controler.Forms.Motorista.MotoristaAtualizarForm;
 import com.van.vanescolarprojeto.controler.Forms.Motorista.MotoristaForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -23,6 +24,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/motorista")
+
 public class MotoristaController {
 
     @Autowired
@@ -33,7 +35,6 @@ public class MotoristaController {
 
     @GetMapping
     @Transactional
-
     public Page<MotoristaDto> listarNomeOuTudo(@RequestParam(required = false) String nome, //não obrigatorio.
                                                @PageableDefault(sort = "id", direction = Sort.Direction.ASC,
                                                        page = 0, size = 10)
@@ -54,10 +55,8 @@ public class MotoristaController {
     public ResponseEntity<DetalhesMotoristaDto> listar(@PathVariable Long id) {
         Optional<Motorista> motorista = motoristaRepository.findById(id);
         if (motorista.isPresent()) {
-
             return ResponseEntity.ok(new DetalhesMotoristaDto(motorista.get()));
         }
-
         return ResponseEntity.notFound().build();
     }
 
@@ -89,7 +88,7 @@ public class MotoristaController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity deletar(@PathVariable Long id) {
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
 
         Optional<Motorista> motorista = motoristaRepository.findById(id);
         if (motorista.isPresent()) {

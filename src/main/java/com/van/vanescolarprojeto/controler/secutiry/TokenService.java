@@ -1,8 +1,7 @@
-package com.van.vanescolarprojeto.controler.secutiry.ParceiroMotorista;
+package com.van.vanescolarprojeto.controler.secutiry;
 
-import com.van.vanescolarprojeto.Modelo.Motorista;
-import com.van.vanescolarprojeto.Modelo.ParceiroMotorista;
 import com.van.vanescolarprojeto.Modelo.Responsavel;
+import com.van.vanescolarprojeto.Modelo.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -13,7 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class TokenServiceParceiroMotorista {
+public class TokenService {
+
 
     @Value("864000")
     private String expiration;
@@ -21,8 +21,8 @@ public class TokenServiceParceiroMotorista {
     private String secret;
 
 
-    public String gerarTokenParceiro(Authentication authenticate) {
-        ParceiroMotorista logado = (ParceiroMotorista) authenticate.getPrincipal();
+    public String gerarToken(Authentication authenticate) {
+        Usuario logado = (Usuario) authenticate.getPrincipal();
         Date hoje = new Date();
         Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
         return Jwts.builder()
@@ -45,7 +45,7 @@ public class TokenServiceParceiroMotorista {
 
     }
 
-    public Long getIdParceiro(String token) {
+    public Long getId(String token) {
 
         Claims claims = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();//converte o token,  claimns passa o token
         return Long.parseLong(claims.getSubject());      //id do usuario

@@ -7,15 +7,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Getter
 @Setter
-public class ParceiroMotorista implements UserDetails {
+public class ParceiroMotorista extends Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +21,8 @@ public class ParceiroMotorista implements UserDetails {
     private String telefone;
     private Date dataNascimento;
     private String cpf;
-    private String senha;
 
-    private String email;
 
-    @ManyToMany
-    private List<Perfil> perfilsParceiro = new ArrayList<>();
     @JsonIgnore
     @ManyToMany(targetEntity = Motorista.class, mappedBy = "parceiroMotorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Motorista> motorista = new ArrayList<>();
@@ -60,38 +53,4 @@ public class ParceiroMotorista implements UserDetails {
 
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return perfilsParceiro;
-    }
-
-    @Override
-    public String getPassword() {
-        return senha;
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

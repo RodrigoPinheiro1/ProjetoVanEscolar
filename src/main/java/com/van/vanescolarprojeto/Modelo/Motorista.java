@@ -8,16 +8,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Motorista implements UserDetails {
+public class Motorista extends Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,13 +25,10 @@ public class Motorista implements UserDetails {
     private String telefone;
     private Date dataDeNascimento;
 
-    private String senha;
 
-    private String email;
-    @ManyToMany
-    private List<Perfil> perfilMotoristas = new ArrayList<>();
+
     @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
-    private List<Automovel> automovel;
+    private List<Automovel> automovel = new ArrayList<>();
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
@@ -85,38 +79,5 @@ public class Motorista implements UserDetails {
     }
 
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return perfilMotoristas;
-    }
 
-    @Override
-    public String getPassword() {
-        return senha;
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

@@ -19,7 +19,7 @@ import java.net.URI;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/motorista/automoveis")
+@RequestMapping(value = "/automoveis")
 public class AutomovelController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class AutomovelController {
         Automovel automovel = automovelForm.cadastrar(motoristaRepository, id);
        automovelRepository.save(automovel);
 
-        URI uri = uriComponentsBuilder.path("/motorista/automoveis/{id}").buildAndExpand(automovel.getId()).toUri();
+        URI uri = uriComponentsBuilder.path("/automoveis/{id}").buildAndExpand(automovel.getId()).toUri();
         return ResponseEntity.created(uri).body(new DetalhesAutomovelDto(automovel));
     }
 
