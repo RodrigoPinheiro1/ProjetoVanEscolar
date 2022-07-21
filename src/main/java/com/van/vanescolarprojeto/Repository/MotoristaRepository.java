@@ -14,7 +14,7 @@ public interface MotoristaRepository extends JpaRepository<Motorista,Long> {
 
 
     Page<Motorista> findByNome(String nome, Pageable pageable);
-    Optional <Motorista> findByEmail(String email);
+    Motorista findByEmail(String email);
 
 
 }

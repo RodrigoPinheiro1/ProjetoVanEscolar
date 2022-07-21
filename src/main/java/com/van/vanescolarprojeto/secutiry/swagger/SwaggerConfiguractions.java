@@ -48,7 +48,7 @@ public class SwaggerConfiguractions {
     }
 
     @Bean
-    public Docket forumApi() {
+    public Docket VanApi() {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())

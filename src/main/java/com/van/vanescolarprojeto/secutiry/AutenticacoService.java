@@ -22,24 +22,13 @@ public class AutenticacoService implements UserDetailsService {
 
 
     @Autowired
-    private ResponsavelRepository responsavelRepository;
-
-    @Autowired
-    private MotoristaRepository motoristaRepository;
-
-    @Autowired
-    private ParceiroMotoristaRepository parceiroMotoristaRepository;
-
-    @Autowired
     private UsuarioRepository usuarioRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 
-        Optional<Motorista> motorista =motoristaRepository.findByEmail(username);
-       Optional<Responsavel> responsavel = responsavelRepository.findByEmail(username);
-     Optional<ParceiroMotorista> parceiroMotorista = parceiroMotoristaRepository.findByEmail(username);
+
      Optional<Usuario> usuario = usuarioRepository.findByEmail(username);
 
     if (usuario.isPresent()){

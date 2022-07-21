@@ -53,14 +53,11 @@ public class SecutiryConfigurations {
                 .antMatchers(HttpMethod.POST, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
                 .antMatchers(HttpMethod.PUT, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
                 .antMatchers(HttpMethod.DELETE, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
-
                 .antMatchers(HttpMethod.PUT, "/parceiroMotorista/*").hasRole("PARCEIRO")
-
                 .antMatchers(HttpMethod.POST, "/motorista/automoveis/*").hasRole("MOTORISTA")
                 .antMatchers(HttpMethod.PUT, "/motorista/automoveis/*").hasRole("MOTORISTA")
                 .antMatchers(HttpMethod.DELETE, "/motorista/automoveis/*").hasRole("MOTORISTA")
                 .antMatchers(HttpMethod.GET, "/responsavel/*").hasRole("MOTORISTA")
-
                 .antMatchers(HttpMethod.GET, "/actuator/**").hasRole("MODERADOR") //MUDAR pois actuator devolve informações sensiveis da aplicação,
                 .antMatchers(HttpMethod.DELETE, "/motorista/*").hasRole("MODERADOR")
                 .antMatchers(HttpMethod.DELETE, "/responsavel/*").hasRole("MODERADOR")
