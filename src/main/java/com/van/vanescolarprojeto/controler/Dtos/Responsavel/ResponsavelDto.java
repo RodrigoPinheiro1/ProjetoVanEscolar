@@ -2,22 +2,19 @@ package com.van.vanescolarprojeto.controler.Dtos.Responsavel;
 
 import com.van.vanescolarprojeto.Modelo.EstadoCivil;
 import com.van.vanescolarprojeto.Modelo.Responsavel;
-import com.van.vanescolarprojeto.controler.Dtos.Aluno.AlunoDto;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Getter
 public class ResponsavelDto {
 
     private Long id;
     private String nome;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private String cpf;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;

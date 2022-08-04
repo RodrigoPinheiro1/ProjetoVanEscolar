@@ -8,11 +8,9 @@ import lombok.Getter;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Getter
 public class DetalhesResponsavel {
@@ -20,7 +18,7 @@ public class DetalhesResponsavel {
 
     private Long id;
     private String nome;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private String cpf;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;

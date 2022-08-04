@@ -16,10 +16,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebSecurity
 @Configuration
-@Profile("prod")
+@EnableWebMvc
+@Profile(value = {"prod","test"})
 public class SecutiryConfigurations {
     @Autowired
     private  UsuarioRepository usuarioRepository;
@@ -51,6 +53,7 @@ public class SecutiryConfigurations {
                 .antMatchers(HttpMethod.GET, "/parceiroMotorista/*").permitAll()
                 .antMatchers(HttpMethod.PUT, "/responsavel/*").hasRole("RESPONSAVEL")
                 .antMatchers(HttpMethod.POST, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
+                .antMatchers(HttpMethod.POST, "/responsavel/aluno").hasRole("RESPONSAVEL")
                 .antMatchers(HttpMethod.PUT, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
                 .antMatchers(HttpMethod.DELETE, "/responsavel/aluno/*").hasRole("RESPONSAVEL")
                 .antMatchers(HttpMethod.PUT, "/parceiroMotorista/*").hasRole("PARCEIRO")

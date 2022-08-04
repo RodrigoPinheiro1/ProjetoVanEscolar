@@ -1,14 +1,12 @@
 package com.van.vanescolarprojeto.Modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 @Entity
@@ -21,7 +19,7 @@ public class Responsavel extends Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private String cpf;
     private String telefone;
 
@@ -39,7 +37,7 @@ public class Responsavel extends Usuario {
     public Responsavel() {
     }
 
-    public Responsavel(String nome, Date dataNascimento, String cpf, String telefone, String senha, String email, EstadoCivil estadoCivil) {
+    public Responsavel(String nome, LocalDate dataNascimento, String cpf, String telefone, String senha, String email, EstadoCivil estadoCivil) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;

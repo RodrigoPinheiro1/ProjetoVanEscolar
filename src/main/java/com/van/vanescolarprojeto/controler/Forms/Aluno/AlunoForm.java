@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -17,7 +17,7 @@ public class AlunoForm {
     @NotEmpty
     private String nome;
 
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     @NotEmpty
     private String cpf;
     private String telefone;

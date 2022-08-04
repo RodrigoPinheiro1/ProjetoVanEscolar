@@ -14,11 +14,17 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>VanEscolarProjeto</name>
 	<description>VanEscobarProjeto</description>
+	<!--<packaging>war</packaging> fazendo com que gere um war, ao inves de jar -->
 	<properties>
 		<maven.compiler.target>18</maven.compiler.target>
 		<maven.compiler.source>18</maven.compiler.source>
 	</properties>
 	<dependencies>
+		<!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>  fazer com que ele nao seja mudado com o tom cat
+		</dependency>-->
 
 		<dependency>
 			<groupId>io.springfox</groupId>

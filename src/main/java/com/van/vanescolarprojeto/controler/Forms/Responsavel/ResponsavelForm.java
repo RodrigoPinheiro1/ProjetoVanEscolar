@@ -10,7 +10,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -19,8 +19,7 @@ public class ResponsavelForm {
 
     @NotNull
     private String nome;
-    @NotNull
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     @NotNull
     private String cpf;
 

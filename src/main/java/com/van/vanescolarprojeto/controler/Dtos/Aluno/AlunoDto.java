@@ -3,7 +3,7 @@ package com.van.vanescolarprojeto.controler.Dtos.Aluno;
 import com.van.vanescolarprojeto.Modelo.Aluno;
 import lombok.Getter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 public class AlunoDto {
@@ -11,7 +11,7 @@ public class AlunoDto {
 
     private Long id;
     private String nome;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private String cpf;
     private String telefone;
 
