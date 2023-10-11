@@ -1,8 +1,6 @@
 package com.van.vanescolarprojeto.Modelo;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +11,11 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 
+@Entity
 @Getter
 @Setter
-@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class ContaSalario {
 
     @Id
@@ -24,6 +24,5 @@ public class ContaSalario {
     private double saldo;
     private LocalDateTime datatransacao =LocalDateTime.now();
 
-    public ContaSalario() {
-    }
+
 }

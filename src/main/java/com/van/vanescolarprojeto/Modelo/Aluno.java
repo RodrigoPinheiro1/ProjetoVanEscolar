@@ -22,22 +22,9 @@ public class Aluno {
 
     private String telefone;
 
-    @ManyToMany(mappedBy = "aluno",fetch = FetchType.LAZY)
-    private List<Responsavel> responsavel = new ArrayList<>();
+    @ManyToOne
+    private Responsavel responsavel;
 
-    public Aluno() {
-    }
 
-    public Aluno(String nome, LocalDate dataNascimento, String cpf, String telefone) {
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.cpf = cpf;
-        this.telefone = telefone;
-    }
-
-    public Aluno(String nome, String telefone) {
-        this.nome = nome;
-        this.telefone = telefone;
-    }
 }
 
