@@ -22,15 +22,12 @@ public class Motorista {
     private String telefone;
     private Date dataDeNascimento;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Automovel automovel;
 
-    @JsonIgnore
-    @OneToOne
-    private ContaSalario contaSalario;
 
 
-    @OneToMany(mappedBy = "motorista")
+    @OneToMany(mappedBy = "motorista",cascade = CascadeType.ALL)
     private List<Responsavel> responsavel = new ArrayList<>();
 
 

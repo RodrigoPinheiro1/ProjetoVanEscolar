@@ -4,7 +4,9 @@ import com.van.vanescolarprojeto.Modelo.Aluno;
 import com.van.vanescolarprojeto.Modelo.EstadoCivil;
 import com.van.vanescolarprojeto.Modelo.Motorista;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,8 +19,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Getter
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ResponsavelDto {
 
 
@@ -36,5 +39,5 @@ public class ResponsavelDto {
 
     @Valid
     @NotNull
-    private List<Aluno> aluno = new ArrayList<>();
+    private List<AlunoDto> aluno = new ArrayList<>();
 }

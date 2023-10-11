@@ -2,19 +2,20 @@ package com.van.vanescolarprojeto.Dto;
 
 
 import com.van.vanescolarprojeto.Modelo.Automovel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.Access;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@Getter
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class MotoristaDto {
 
     private Long id;
@@ -34,10 +35,10 @@ public class MotoristaDto {
     @NotBlank
     private String telefone;
 
-    @NotNull
-    @NotBlank
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date dataDeNascimento;
 
     @NotNull
+    @Valid
     private AutomovelDto automovel;
 }

@@ -22,12 +22,12 @@ public class ResponsavelController {
     private ResponsavelService responsavelService;
 
     @PostMapping
-    public ResponseEntity<ResponsavelDto> cadastrar(@RequestBody @Valid ResponsavelDto dto,
+    public ResponseEntity<ResponsavelDto> cadastrarResponsavel(@RequestBody @Valid ResponsavelDto dto,
                                                     UriComponentsBuilder uriComponentsBuilder) {
 
 
         ResponsavelDto responsavelDto = responsavelService.cadastrarResponsavel(dto);
-        URI uri = uriComponentsBuilder.path("/responsavel/{id}").buildAndExpand(responsavelDto.getId()).toUri();
+        URI uri = uriComponentsBuilder.path("/responsavel/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(responsavelDto);
     }
 

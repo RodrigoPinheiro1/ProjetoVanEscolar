@@ -15,7 +15,6 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/motorista")
-
 public class MotoristaController {
 
 
@@ -29,7 +28,7 @@ public class MotoristaController {
 
         MotoristaDto dto = motoristaService.cadastrarMotorista(motoristaDto);
 
-        URI uri = uriComponentsBuilder.path("/motorista/{id}").buildAndExpand(dto.getId()).toUri();
+        URI uri = uriComponentsBuilder.path("/motorista/{id}").buildAndExpand(motoristaDto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
 

@@ -29,7 +29,7 @@ public class Responsavel{
     private Motorista motorista;
 
 
-    @OneToMany(mappedBy = "responsavel")
+    @OneToMany(mappedBy = "responsavel",cascade = CascadeType.ALL)
     private List<Aluno> aluno = new ArrayList<>();
 
 

@@ -20,8 +20,6 @@ public class Automovel {
     private String nomeCarro;
     private String placa;
 
-    @ManyToOne
-    private Motorista motorista;
 
 
 }
