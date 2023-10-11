@@ -26,10 +26,9 @@ public class ResponsavelController {
                                                     UriComponentsBuilder uriComponentsBuilder) {
 
 
-        responsavelService.cadastrarResponsavel(dto);
-        URI uri = uriComponentsBuilder.path("/responsavel/{id}").buildAndExpand(dto.getId()).toUri();
-        return ResponseEntity.created(uri).body(dto);
-
+        ResponsavelDto responsavelDto = responsavelService.cadastrarResponsavel(dto);
+        URI uri = uriComponentsBuilder.path("/responsavel/{id}").buildAndExpand(responsavelDto.getId()).toUri();
+        return ResponseEntity.created(uri).body(responsavelDto);
     }
 
 

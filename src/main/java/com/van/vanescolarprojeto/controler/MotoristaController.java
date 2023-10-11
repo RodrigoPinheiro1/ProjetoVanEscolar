@@ -27,7 +27,6 @@ public class MotoristaController {
     public ResponseEntity<MotoristaDto> cadastrarMotorista(@RequestBody @Valid MotoristaDto motoristaDto,
                                                            UriComponentsBuilder uriComponentsBuilder) {
 
-
         MotoristaDto dto = motoristaService.cadastrarMotorista(motoristaDto);
 
         URI uri = uriComponentsBuilder.path("/motorista/{id}").buildAndExpand(dto.getId()).toUri();

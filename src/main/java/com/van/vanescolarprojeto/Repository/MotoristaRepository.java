@@ -13,8 +13,5 @@ import java.util.Optional;
 public interface MotoristaRepository extends JpaRepository<Motorista,Long> {
 
 
-    Page<Motorista> findByNome(String nome, Pageable pageable);
-    Motorista findByEmail(String email);
-
 
 }
