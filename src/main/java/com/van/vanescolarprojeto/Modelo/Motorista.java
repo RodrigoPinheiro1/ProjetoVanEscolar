@@ -25,10 +25,25 @@ public class Motorista {
     @OneToOne(cascade = CascadeType.ALL)
     private Automovel automovel;
 
+    @Enumerated(EnumType.STRING)
+    private StatusPedidoCorrida statusPedidoCorrida;
 
 
-    @OneToMany(mappedBy = "motorista",cascade = CascadeType.ALL)
+    @Embedded
+    private Endereco endereco;
+
+    @OneToMany(mappedBy = "motorista", cascade = CascadeType.ALL)
     private List<Responsavel> responsavel = new ArrayList<>();
+
+
+    public void remover (Motorista motorista){
+
+
+
+        responsavel.remove(motorista);
+
+    }
+
 
 
 }

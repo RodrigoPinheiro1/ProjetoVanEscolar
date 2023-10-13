@@ -1,13 +1,13 @@
 package com.van.vanescolarprojeto.Dto;
 
 
-import com.van.vanescolarprojeto.Modelo.Automovel;
-import lombok.*;
+import com.van.vanescolarprojeto.Modelo.Endereco;
+import com.van.vanescolarprojeto.Modelo.StatusPedidoCorrida;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.persistence.Access;
-import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -30,6 +30,10 @@ public class MotoristaDto {
     @NotNull
     @NotBlank
     private String cnh;
+    private Endereco endereco;
+
+    private StatusPedidoCorrida statusPedidoCorrida;
+
 
     @NotNull
     @NotBlank
@@ -38,7 +42,4 @@ public class MotoristaDto {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date dataDeNascimento;
 
-    @NotNull
-    @Valid
-    private AutomovelDto automovel;
 }

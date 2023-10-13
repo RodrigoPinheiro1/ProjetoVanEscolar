@@ -1,11 +1,14 @@
 package com.van.vanescolarprojeto.Modelo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,12 +28,19 @@ public class Responsavel{
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
 
+
+    @Enumerated(EnumType.STRING)
+    private StatusPedidoCorrida statusPedidoCorrida;
+
     @ManyToOne
     private Motorista motorista;
 
+    @Embedded
+    private Endereco endereco;
 
-    @OneToMany(mappedBy = "responsavel",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL)
     private List<Aluno> aluno = new ArrayList<>();
+
 
 
 }

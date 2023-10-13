@@ -1,8 +1,6 @@
 package com.van.vanescolarprojeto.Dto;
 
-import com.van.vanescolarprojeto.Modelo.Aluno;
-import com.van.vanescolarprojeto.Modelo.EstadoCivil;
-import com.van.vanescolarprojeto.Modelo.Motorista;
+import com.van.vanescolarprojeto.Modelo.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -33,6 +31,12 @@ public class ResponsavelDto {
     private String cpf;
     @NotNull
     private String telefone;
+
+    @NotNull
+    @Valid
+    private Endereco endereco;
+
+    private StatusPedidoCorrida statusPedidoCorrida;
 
     @NotNull
     private EstadoCivil estadoCivil;
