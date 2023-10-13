@@ -1,6 +1,6 @@
 package com.van.vanescolarprojeto.service;
 
-import com.van.vanescolarprojeto.Dto.MotoristaDto;
+import com.van.vanescolarprojeto.Dto.MotoristaAutomovelDto;
 import com.van.vanescolarprojeto.Modelo.Motorista;
 import com.van.vanescolarprojeto.Repository.MotoristaRepository;
 import org.modelmapper.ModelMapper;
@@ -18,12 +18,12 @@ public class AutomovelService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public MotoristaDto cadastrarMotorista(MotoristaDto motoristaDto) {
+    public MotoristaAutomovelDto cadastrarMotorista(MotoristaAutomovelDto motoristaAutomovelDto) {
 
-        Motorista motorista = modelMapper.map(motoristaDto, Motorista.class);
+        Motorista motorista = modelMapper.map(motoristaAutomovelDto, Motorista.class);
         motoristaRepository.save(motorista);
 
-        return modelMapper.map(motorista, MotoristaDto.class);
+        return modelMapper.map(motorista, MotoristaAutomovelDto.class);
     }
 
 }

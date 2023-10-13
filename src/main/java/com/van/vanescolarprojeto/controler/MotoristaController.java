@@ -1,13 +1,14 @@
 package com.van.vanescolarprojeto.controler;
 
-import com.van.vanescolarprojeto.Dto.MotoristaDto;
+import com.van.vanescolarprojeto.Dto.*;
+import com.van.vanescolarprojeto.Modelo.Responsavel;
 import com.van.vanescolarprojeto.service.MotoristaService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -23,14 +24,42 @@ public class MotoristaController {
 
 
     @PostMapping
-    public ResponseEntity<MotoristaDto> cadastrarMotorista(@RequestBody @Valid MotoristaDto motoristaDto,
-                                                           UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<MotoristaAutomovelDto> cadastrarMotorista(@RequestBody @Valid MotoristaAutomovelDto motoristaAutomovelDto,
+                                                                    UriComponentsBuilder uriComponentsBuilder) {
 
-        MotoristaDto dto = motoristaService.cadastrarMotorista(motoristaDto);
+        MotoristaAutomovelDto dto = motoristaService.cadastrarMotorista(motoristaAutomovelDto);
 
-        URI uri = uriComponentsBuilder.path("/motorista/{id}").buildAndExpand(motoristaDto.getId()).toUri();
+        URI uri = uriComponentsBuilder.path("/motorista/{id}").buildAndExpand(motoristaAutomovelDto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
+
+    @GetMapping("/pedidos/{idMotorista}")
+    public Page<ResponsavelDto> verPedidosCorridas(@PathVariable Long idMotorista, Pageable pageable) {
+
+
+        return motoristaService.verPedidosCorridas(idMotorista, pageable);
+    }
+
+    @PatchMapping("/aceitarCorrida/{idMotorista}")
+    public ResponseEntity<ResponsavelMotoristaDto> aceitarCorrida(@PathVariable Long idMotorista,
+                                                                  @RequestBody PedidoCorridaMotoristaDto pedidoCorridaMotoristaDto) {
+
+        ResponsavelMotoristaDto dto = motoristaService.aceitarCorrida(idMotorista, pedidoCorridaMotoristaDto);
+
+
+        return ResponseEntity.ok(dto);
+    }
+
+    @PatchMapping("/negarCorrida/{idMotorista}")
+    public ResponseEntity<ResponsavelMotoristaDto> negarCorrida(@PathVariable Long idMotorista,
+                                                                  @RequestBody PedidoCorridaMotoristaDto pedidoCorridaMotoristaDto) {
+
+        ResponsavelMotoristaDto dto = motoristaService.negarCorrida(idMotorista, pedidoCorridaMotoristaDto);
+
+
+        return ResponseEntity.ok(dto);
+    }
+
 
 }
 
