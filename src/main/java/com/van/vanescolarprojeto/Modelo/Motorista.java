@@ -1,11 +1,7 @@
 package com.van.vanescolarprojeto.Modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.*;
@@ -13,8 +9,9 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode
-public class Motorista extends Usuario {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Motorista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,58 +22,20 @@ public class Motorista extends Usuario {
     private String telefone;
     private Date dataDeNascimento;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Automovel automovel;
+
+    @Enumerated(EnumType.STRING)
+    private StatusPedidoCorrida statusPedidoCorrida;
 
 
-    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
-    private List<Automovel> automovel = new ArrayList<>();
+    @Embedded
+    private Endereco endereco;
 
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
-    private ContaSalario contaSalario;
-
-    @JsonIgnore
-    @ManyToMany
-    private List<ParceiroMotorista> parceiroMotorista = new ArrayList<>();
-
-    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motorista", cascade = CascadeType.ALL)
     private List<Responsavel> responsavel = new ArrayList<>();
 
 
-    public Motorista(String nome, String cpf, String cnh, String telefone, Date dataDeNascimento, String senha, String email) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.cnh = cnh;
-        this.telefone = telefone;
-        this.dataDeNascimento = dataDeNascimento;
-        this.senha = senha;
-        this.email = email;
-    }
-
-    public Motorista() {
-    }
-
-    public Motorista(String nome, String telefone, Date dataDeNascimento, List<ParceiroMotorista> parceiroMotorista) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.dataDeNascimento = dataDeNascimento;
-        this.parceiroMotorista = parceiroMotorista;
-    }
-
-
-    public void adicionarAutomovel(Automovel automovel) {
-
-        automovel.setMotorista(this);
-        this.automovel.add(automovel);
-    }
-
-    public void adicionar(ParceiroMotorista parceiroMotorista) {
-        List<Motorista> motorista = new ArrayList<>();
-
-        parceiroMotorista.setMotorista(motorista);
-        this.parceiroMotorista.add(parceiroMotorista); //adiciona na tabela do relacionamento many to many
-
-
-    }
 
 
 

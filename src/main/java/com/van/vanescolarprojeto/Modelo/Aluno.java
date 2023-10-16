@@ -1,7 +1,6 @@
 package com.van.vanescolarprojeto.Modelo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Aluno {
 
     @Id
@@ -22,22 +22,9 @@ public class Aluno {
 
     private String telefone;
 
-    @ManyToMany(mappedBy = "aluno",fetch = FetchType.LAZY)
-    private List<Responsavel> responsavel = new ArrayList<>();
+    @ManyToOne
+    private Responsavel responsavel;
 
-    public Aluno() {
-    }
 
-    public Aluno(String nome, LocalDate dataNascimento, String cpf, String telefone) {
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.cpf = cpf;
-        this.telefone = telefone;
-    }
-
-    public Aluno(String nome, String telefone) {
-        this.nome = nome;
-        this.telefone = telefone;
-    }
 }
 
