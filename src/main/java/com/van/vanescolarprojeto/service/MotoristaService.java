@@ -93,4 +93,33 @@ public class MotoristaService {
 
         return modelMapper.map(responsavel, ResponsavelMotoristaDto.class);
     }
+
+    public AtualizaMotoristaDto atualizarMotorista(Long idMotorista, AtualizaMotoristaDto dto) {
+
+
+        motoristaRepository.findById(idMotorista).orElseThrow(UsuarioNaoEncontrado::new);
+        Motorista motorista = modelMapper.map(dto, Motorista.class);
+
+        Automovel automovel = modelMapper.map(dto.getAutomovel(), Automovel.class);
+
+        motorista.setId(idMotorista);
+        motorista.setNome(dto.getNome());
+        motorista.setCnh(dto.getCnh());
+        motorista.setTelefone(dto.getTelefone());
+        motorista.setEndereco(dto.getEndereco());
+
+        motorista.setAutomovel(automovel);
+
+        motoristaRepository.save(motorista);
+
+        return modelMapper.map(motorista, AtualizaMotoristaDto.class);
+    }
+
+
+    public MotoristaAutomovelDto findById(Long idMotorista) {
+
+        Motorista motorista = motoristaRepository.findById(idMotorista).orElseThrow(UsuarioNaoEncontrado::new);
+        return modelMapper.map(motorista, MotoristaAutomovelDto.class);
+
+    }
 }

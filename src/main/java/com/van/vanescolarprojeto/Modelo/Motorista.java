@@ -36,13 +36,6 @@ public class Motorista {
     private List<Responsavel> responsavel = new ArrayList<>();
 
 
-    public void remover (Motorista motorista){
-
-
-
-        responsavel.remove(motorista);
-
-    }
 
 
 

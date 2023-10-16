@@ -1,9 +1,7 @@
 package com.van.vanescolarprojeto.controler;
 
 import com.van.vanescolarprojeto.Dto.*;
-import com.van.vanescolarprojeto.Modelo.Responsavel;
 import com.van.vanescolarprojeto.service.MotoristaService;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -59,6 +57,27 @@ public class MotoristaController {
 
         return ResponseEntity.ok(dto);
     }
+
+    @PutMapping("/{idMotorista}")
+    public ResponseEntity<AtualizaMotoristaDto> atualizarMotorista(@PathVariable Long idMotorista,
+                                                                   @RequestBody @Valid AtualizaMotoristaDto motoristaAutomovelDto) {
+
+        AtualizaMotoristaDto dto = motoristaService.atualizarMotorista(idMotorista,motoristaAutomovelDto);
+
+
+        return ResponseEntity.ok(dto);
+    }
+
+
+
+    @GetMapping("/{idMotorista}")
+    public ResponseEntity<MotoristaAutomovelDto> atualizarMotoristaAutomovel(@PathVariable Long idMotorista){
+
+        MotoristaAutomovelDto id = motoristaService.findById(idMotorista);
+
+        return ResponseEntity.ok(id);
+    }
+
 
 
 }
