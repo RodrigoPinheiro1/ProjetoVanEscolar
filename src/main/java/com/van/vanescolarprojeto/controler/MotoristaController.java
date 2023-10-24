@@ -50,7 +50,7 @@ public class MotoristaController {
 
     @PatchMapping("/negarCorrida/{idMotorista}")
     public ResponseEntity<ResponsavelMotoristaDto> negarCorrida(@PathVariable Long idMotorista,
-                                                                  @RequestBody PedidoCorridaMotoristaDto pedidoCorridaMotoristaDto) {
+                                                                @RequestBody PedidoCorridaMotoristaDto pedidoCorridaMotoristaDto) {
 
         ResponsavelMotoristaDto dto = motoristaService.negarCorrida(idMotorista, pedidoCorridaMotoristaDto);
 
@@ -62,22 +62,20 @@ public class MotoristaController {
     public ResponseEntity<AtualizaMotoristaDto> atualizarMotorista(@PathVariable Long idMotorista,
                                                                    @RequestBody @Valid AtualizaMotoristaDto motoristaAutomovelDto) {
 
-        AtualizaMotoristaDto dto = motoristaService.atualizarMotorista(idMotorista,motoristaAutomovelDto);
+        AtualizaMotoristaDto dto = motoristaService.atualizarMotorista(idMotorista, motoristaAutomovelDto);
 
 
         return ResponseEntity.ok(dto);
     }
 
 
-
     @GetMapping("/{idMotorista}")
-    public ResponseEntity<MotoristaAutomovelDto> atualizarMotoristaAutomovel(@PathVariable Long idMotorista){
+    public ResponseEntity<MotoristaAutomovelDto> atualizarMotoristaAutomovel(@PathVariable Long idMotorista) {
 
         MotoristaAutomovelDto id = motoristaService.findById(idMotorista);
 
         return ResponseEntity.ok(id);
     }
-
 
 
 }
