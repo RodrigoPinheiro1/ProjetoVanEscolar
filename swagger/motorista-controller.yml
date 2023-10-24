@@ -1,6 +1,6 @@
 openapi: '3.0.2'
 info:
-  title: SEC_BUS API
+  title: SEC_BUS API MOTORISTAS
   version: '1.0'
   description: Esta documentação serve para mostrar o fluxo das requisições relacionadas ao motorista
 servers:
