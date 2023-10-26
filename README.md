@@ -8,5 +8,5 @@ http://localhost:8080/swagger-ui.html
 
 ## Nome dos participantes
 
-Ana Paula
+Ana Paula  
 Rodrigo Pinheiro Silva  
