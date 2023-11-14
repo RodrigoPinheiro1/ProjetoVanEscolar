@@ -100,6 +100,7 @@ Requisição do tipo GET para /motorista/id e a resposta recebida:
 
 Requisição do tipo PUT para /motorista/id e payload enviado:
 
+```json
 {
     "nome":"Motoristaatualiza21",
     "telefone":"231232132323232",
@@ -121,9 +122,11 @@ Requisição do tipo PUT para /motorista/id e payload enviado:
         "placa":"nova poa"
     }
 }
+```
 
 Resposta esperada para esta requisição:
-    
+
+```json 
 {
     "id": 1,
     "nome": "Motoristaatualiza21",
@@ -146,3 +149,4 @@ Resposta esperada para esta requisição:
         "placa": "nova poa"
     }
 }
+```
