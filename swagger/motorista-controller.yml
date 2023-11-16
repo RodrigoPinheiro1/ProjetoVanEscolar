@@ -1,0 +1,138 @@
+openapi: '3.0.2'
+info:
+  title: SEC_BUS API MOTORISTAS
+  version: '1.0'
+  description: Esta documentação serve para mostrar o fluxo das requisições relacionadas ao motorista
+servers:
+  - url: http://localhost:8080
+    
+paths:
+  
+  /motorista:
+    post:
+      tags:
+        - "motorista"
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+            example: application/json
+
+        - name: data
+          in: header
+          required: true
+          schema:
+            type: object
+            properties:
+              cep:
+                type: string
+                pattern: xxxxx-xxx
+                example: 76400-000
+
+              nome:
+                type: string
+                example: Fulano de Tall
+
+              telefone:
+                pattern: +xx(xx)xxxxx-xxxx
+                example: +55(62)98745-6321
+
+              cpf:
+                type: string
+                pattern: xxx.xxx.xxx-xx
+                example: 000.000.000-00
+
+              cnh:
+                maximum: 20
+                example: 123456789
+
+              dataDeNascimento:
+                pattern: xxxx-xx-xx
+                example: 1984-08-30
+
+              endereco:
+                properties:
+                  cep:
+                    type: string
+                    pattern: xxxxx-xxx
+                    example: 76400-000
+
+                  cidade:
+                    type: string
+                    example: Goiânia
+
+                  bairro:
+                    type: string
+                    maximum: 30
+                    example: Alto da Glória
+
+                  complemento:
+                    type: string
+                    maximum: 100
+                    example: Próximo ao Carrefour
+
+                  numero:
+                    type: string
+                    maximum: 6
+                    example: 123
+
+                  localidade:
+                    type: string
+                    maximum: 2
+                    example: GO
+
+                  logradouro:
+                    type: string
+                    maximum: 50
+                    example: Avenida 2 Radial
+
+              automovel:
+                properties:
+                  modelo:
+                    type: string
+                    maximum: 30
+                    example: Renault
+
+                  nomeCarro:
+                    type: string
+                    maximum: 20
+                    example: Master
+
+                  placa:
+                    type: string
+                    maximum: 7
+                    example: DKV0J01
+            
+      responses:
+        '201':
+          description: Resource saved
+        '400':
+          description: Bad Request
+        '500':
+          description: Server Error
+  
+  /motorista/{id}:
+    get:
+      tags:
+        - motorista
+      parameters:
+        - name: id
+          in: path
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '500':
+          description: Server error
+
+
+  /responsaveis:
+   get:
+    responses:
+      '200':
+        description: Success
