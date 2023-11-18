@@ -1,6 +1,10 @@
 Nomes dos envolvidos no projeto:  
 
 Rodrigo Pinheiro Silva,
+ANA PAULA CARNEIRO DOS SANTOS MORAIS EZIO TEIXEIRA
+HEIJI KATAYAMA 
+MARCELO ALVES DE MATOS FILHO 
+QUEZIA REGINA MACEDO SARRECCHIA
 
 
 # Documentação das Requisições e Respostas da API
