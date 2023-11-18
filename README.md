@@ -1,3 +1,8 @@
+Nomes dos envolvidos no projeto:  
+
+Rodrigo Pinheiro Silva,
+
+
 # Documentação das Requisições e Respostas da API
 
 ## 1. OBJETIVO
@@ -500,4 +505,3 @@ Resposta esperada para esta requisição:
         "dataDeNascimento": null
     }
 }
-```
