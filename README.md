@@ -1,6 +1,6 @@
 Nomes dos envolvidos no projeto:  
 
-Rodrigo Pinheiro Silva,
+Rodrigo Pinheiro Silva   
 ANA PAULA CARNEIRO DOS SANTOS MORAIS EZIO TEIXEIRA  
 HEIJI KATAYAMA  
 MARCELO ALVES DE MATOS FILHO   
