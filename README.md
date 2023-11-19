@@ -516,14 +516,6 @@ Resposta esperada para esta requisição:
 Requisição do tipo GET para /responsavel{id} e a resposta recebida:
 ```json
 {
-
-    ## 2.10. GET /RESPONSAVEL/{ID}
-
-Requisição do tipo GET para /responsavel{id} e a resposta recebida:
-
-```json
-
-{
     
     "id": 1,
     "nome": "Responsavel4",
