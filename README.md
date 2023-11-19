@@ -509,6 +509,14 @@ Resposta esperada para esta requisição:
         "dataDeNascimento": null
     }
 }
+
+```
+## 2.10. GET /RESPONSAVEL/{ID}
+
+Requisição do tipo GET para /responsavel{id} e a resposta recebida:
+```json
+{
+
     ## 2.10. GET /RESPONSAVEL/{ID}
 
 Requisição do tipo GET para /responsavel{id} e a resposta recebida:
@@ -559,8 +567,5 @@ Requisição do tipo GET para /responsavel{id} e a resposta recebida:
         "statusPedidoCorrida": "Pedido_Negado",
         "telefone": "231232132323232",
         "dataDeNascimento": null
-        ```
-        }
-        
-        }
-    
+    }
+}
