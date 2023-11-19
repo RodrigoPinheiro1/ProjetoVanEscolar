@@ -1,3 +1,8 @@
+Nomes dos envolvidos no projeto:  
+
+Rodrigo Pinheiro Silva,
+
+
 # Documentação das Requisições e Respostas da API
 
 ## 1. OBJETIVO
@@ -496,6 +501,56 @@ Resposta esperada para esta requisição:
             "localidade": "asd"
         },
         "statusPedidoCorrida": "Feito_Pedido",
+        "telefone": "231232132323232",
+        "dataDeNascimento": null
+    }
+}
+```
+## 2.10. GET /RESPONSAVEL/{ID}
+
+Requisição do tipo GET para /responsavel{id} e a resposta recebida:
+```json
+{
+    "id": 1,
+    "nome": "Responsavel4",
+    "dataNascimento": "2022-05-10T00:00:00.000+00:00",
+    "cpf": "555555555555",
+    "telefone": "2312312323232",
+    "endereco": {
+        "cep": "03101010",
+        "cidade": "suzano",
+        "numero": "331",
+        "logradouro": "asd",
+        "complemento": "apto 47",
+        "bairro": "aaa",
+        "localidade": "asd"
+    },
+    "statusPedidoCorrida": "Pedido_Negado",
+    "estadoCivil": "SOLTEIRO",
+    "aluno": [
+        {
+            "id": 1,
+            "nome": "nomeAluno",
+            "dataNascimento": "2022-05-10",
+            "cpf": "555555555555",
+            "telefone": "2312312323232"
+        }
+    ],
+    "motorista": {
+        "id": 1,
+        "nome": "Motoristaatualiza21",
+        "cpf": "23232323232323",
+        "cnh": "23123123212",
+        "endereco": {
+            "cep": "03101010",
+            "cidade": "suzano",
+            "numero": "331",
+            "logradouro": "asd",
+            "complemento": "apto 47",
+            "bairro": "aaa",
+            "localidade": "asd"
+        },
+        "statusPedidoCorrida": "Pedido_Negado",
         "telefone": "231232132323232",
         "dataDeNascimento": null
     }
