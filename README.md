@@ -1,6 +1,10 @@
 Nomes dos envolvidos no projeto:  
 
-Rodrigo Pinheiro Silva,
+Rodrigo Pinheiro Silva   
+ANA PAULA CARNEIRO DOS SANTOS MORAIS EZIO TEIXEIRA  
+HEIJI KATAYAMA  
+MARCELO ALVES DE MATOS FILHO   
+QUEZIA REGINA MACEDO SARRECCHIA  
 
 
 # Documentação das Requisições e Respostas da API
@@ -505,12 +509,22 @@ Resposta esperada para esta requisição:
         "dataDeNascimento": null
     }
 }
+
 ```
 ## 2.10. GET /RESPONSAVEL/{ID}
 
 Requisição do tipo GET para /responsavel{id} e a resposta recebida:
 ```json
 {
+
+    ## 2.10. GET /RESPONSAVEL/{ID}
+
+Requisição do tipo GET para /responsavel{id} e a resposta recebida:
+
+```json
+
+{
+    
     "id": 1,
     "nome": "Responsavel4",
     "dataNascimento": "2022-05-10T00:00:00.000+00:00",
@@ -555,4 +569,3 @@ Requisição do tipo GET para /responsavel{id} e a resposta recebida:
         "dataDeNascimento": null
     }
 }
-```
