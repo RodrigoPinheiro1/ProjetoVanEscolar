@@ -1,11 +1,19 @@
-Nomes dos envolvidos no projeto:  
+Nomes dos envolvidos no projeto:
 
-Rodrigo Pinheiro Silva   
-ANA PAULA CARNEIRO DOS SANTOS MORAIS EZIO TEIXEIRA  
-HEIJI KATAYAMA  
-MARCELO ALVES DE MATOS FILHO   
-QUEZIA REGINA MACEDO SARRECCHIA  
+Rodrigo Pinheiro Silva  
+Ana Paula Carneiro dos Santos Morais
+Heiji Katayama  
+Marcelo Alves de Matos Filho  
+Quezia Regina Macedo Sarrecchia  
+Ezio Teixeira
 
+# Link Do Front [Van Escolar Front](https://secbus.flutterflow.app)
+
+O projeto foi desenvolvido em FlutterFlow, uma plataforma low code que utiliza o framework Flutter como ferramenta de criação. A plataforma não fornece a disponibilidade de exportação ou copia do código. O código fonte fica todo hospedado dentro da plataforma.
+
+# Link do video [CRUD](https://vimeo.com/886647552)
+
+# Link do video [Frontend](https://vimeo.com/886647538)
 
 # Documentação das Requisições e Respostas da API
 
@@ -25,25 +33,25 @@ Requisição do tipo POST para /motorista e payload enviado:
 
 ```json
 {
-    "nome":"Fulano de Tall",
-    "telefone":"+55(62)98745-6321",
-    "cpf" : "000.000.000-00",
-    "cnh": "123456789",
-    "dataDeNascimento":"1984-08-30",
-    "endereco": {
-        "cep":"76400-000",
-        "cidade":"Goiânia",
-        "bairro":"Alto da Glória",
-        "complemento":"Próximo ao Carrefour",
-        "numero":"123",
-        "localidade":"GO",
-        "logradouro":"Avenida 2 Radial"
-    },
-    "automovel": {
-        "modelo":"Renault",
-        "nomeCarro":"Master",
-        "placa":"DKV0J01"
-    }
+  "nome": "Fulano de Tall",
+  "telefone": "+55(62)98745-6321",
+  "cpf": "000.000.000-00",
+  "cnh": "123456789",
+  "dataDeNascimento": "1984-08-30",
+  "endereco": {
+    "cep": "76400-000",
+    "cidade": "Goiânia",
+    "bairro": "Alto da Glória",
+    "complemento": "Próximo ao Carrefour",
+    "numero": "123",
+    "localidade": "GO",
+    "logradouro": "Avenida 2 Radial"
+  },
+  "automovel": {
+    "modelo": "Renault",
+    "nomeCarro": "Master",
+    "placa": "DKV0J01"
+  }
 }
 ```
 
@@ -51,27 +59,27 @@ Resposta esperada para esta requisição:
 
 ```json
 {
+  "id": 33,
+  "nome": "Fulano de Tall",
+  "cpf": "000.000.000-00",
+  "cnh": "123456789",
+  "endereco": {
+    "cep": "76400-000",
+    "cidade": "Goiânia",
+    "numero": "123",
+    "logradouro": "Avenida 2 Radial",
+    "complemento": "Próximo ao Carrefour",
+    "bairro": "Alto da Glória",
+    "localidade": "GO"
+  },
+  "telefone": "+55(62)98745-6321",
+  "dataDeNascimento": "1984-08-30T00:00:00.000+00:00",
+  "automovel": {
     "id": 33,
-    "nome": "Fulano de Tall",
-    "cpf": "000.000.000-00",
-    "cnh": "123456789",
-    "endereco": {
-        "cep": "76400-000",
-        "cidade": "Goiânia",
-        "numero": "123",
-        "logradouro": "Avenida 2 Radial",
-        "complemento": "Próximo ao Carrefour",
-        "bairro": "Alto da Glória",
-        "localidade": "GO"
-    },
-    "telefone": "+55(62)98745-6321",
-    "dataDeNascimento": "1984-08-30T00:00:00.000+00:00",
-    "automovel": {
-        "id": 33,
-        "modelo": "Renault",
-        "nomeCarro": "Master",
-        "placa": "DKV0J01"
-    }
+    "modelo": "Renault",
+    "nomeCarro": "Master",
+    "placa": "DKV0J01"
+  }
 }
 ```
 
@@ -81,27 +89,27 @@ Requisição do tipo GET para /motorista/id e a resposta recebida:
 
 ```json
 {
+  "id": 1,
+  "nome": "Fulano de Tall",
+  "cpf": "000.000.000-00",
+  "cnh": "123456789",
+  "endereco": {
+    "cep": "76400-000",
+    "cidade": "Goiânia",
+    "numero": "123",
+    "logradouro": "Avenida 2 Radial",
+    "complemento": "Próximo ao Carrefour",
+    "bairro": "Alto da Glória",
+    "localidade": "GO"
+  },
+  "telefone": "+55(62)98745-6321",
+  "dataDeNascimento": "1984-08-30T00:00:00.000+00:00",
+  "automovel": {
     "id": 1,
-    "nome": "Fulano de Tall",
-    "cpf": "000.000.000-00",
-    "cnh": "123456789",
-    "endereco": {
-        "cep": "76400-000",
-        "cidade": "Goiânia",
-        "numero": "123",
-        "logradouro": "Avenida 2 Radial",
-        "complemento": "Próximo ao Carrefour",
-        "bairro": "Alto da Glória",
-        "localidade": "GO"
-    },
-    "telefone": "+55(62)98745-6321",
-    "dataDeNascimento": "1984-08-30T00:00:00.000+00:00",
-    "automovel": {
-        "id": 1,
-        "modelo": "Renault",
-        "nomeCarro": "Master",
-        "placa": "DKV0J01"
-    }
+    "modelo": "Renault",
+    "nomeCarro": "Master",
+    "placa": "DKV0J01"
+  }
 }
 ```
 
@@ -111,25 +119,25 @@ Requisição do tipo PUT para /motorista/id e payload enviado:
 
 ```json
 {
-    "nome":"Motoristaatualiza21",
-    "telefone":"231232132323232",
-    "cpf" : "23232323232323",
-    "cnh": "23123123212",
-    "dataNascimento":"2222-00-22",
-    "endereco": {
-        "cep":"03101010",
-        "cidade":"suzano",
-        "bairro":"aaa",
-        "complemento":"apto 47",
-        "numero":"331",
-        "localidade":"asd",
-        "logradouro":"asd"
-    },
-    "automovel": {
-        "modelo":"testee",
-        "nomeCarro":"poa",
-        "placa":"nova poa"
-    }
+  "nome": "Motoristaatualiza21",
+  "telefone": "231232132323232",
+  "cpf": "23232323232323",
+  "cnh": "23123123212",
+  "dataNascimento": "2222-00-22",
+  "endereco": {
+    "cep": "03101010",
+    "cidade": "suzano",
+    "bairro": "aaa",
+    "complemento": "apto 47",
+    "numero": "331",
+    "localidade": "asd",
+    "logradouro": "asd"
+  },
+  "automovel": {
+    "modelo": "testee",
+    "nomeCarro": "poa",
+    "placa": "nova poa"
+  }
 }
 ```
 
@@ -137,26 +145,26 @@ Resposta esperada para esta requisição:
 
 ```json
 {
-    "id": 1,
-    "nome": "Motoristaatualiza21",
-    "cpf": "23232323232323",
-    "cnh": "23123123212",
-    "endereco": {
-        "cep": "03101010",
-        "cidade": "suzano",
-        "numero": "331",
-        "logradouro": "asd",
-        "complemento": "apto 47",
-        "bairro": "aaa",
+  "id": 1,
+  "nome": "Motoristaatualiza21",
+  "cpf": "23232323232323",
+  "cnh": "23123123212",
+  "endereco": {
+    "cep": "03101010",
+    "cidade": "suzano",
+    "numero": "331",
+    "logradouro": "asd",
+    "complemento": "apto 47",
+    "bairro": "aaa",
     "localidade": "asd"
-    },
-    "telefone": "231232132323232",
-    "automovel": {
-        "id": null,
-        "modelo": "testee",
-        "nomeCarro": "poa",
-        "placa": "nova poa"
-    }
+  },
+  "telefone": "231232132323232",
+  "automovel": {
+    "id": null,
+    "modelo": "testee",
+    "nomeCarro": "poa",
+    "placa": "nova poa"
+  }
 }
 ```
 
@@ -166,60 +174,60 @@ Requisição do tipo GET para /motorista/pedidos/1 e a resposta recebida:
 
 ```json
 {
-    "content": [
+  "content": [
+    {
+      "id": 1,
+      "nome": "Responsavel4",
+      "dataNascimento": "2022-05-10T00:00:00.000+00:00",
+      "cpf": "555555555555",
+      "telefone": "2312312323232",
+      "endereco": {
+        "cep": "03101010",
+        "cidade": "suzano",
+        "numero": "331",
+        "logradouro": "asd",
+        "complemento": "apto 47",
+        "bairro": "aaa",
+        "localidade": "asd"
+      },
+      "statusPedidoCorrida": "Feito_Pedido",
+      "estadoCivil": "SOLTEIRO",
+      "aluno": [
         {
-            "id": 1,
-            "nome": "Responsavel4",
-            "dataNascimento": "2022-05-10T00:00:00.000+00:00",
-            "cpf": "555555555555",
-            "telefone": "2312312323232",
-            "endereco": {
-                "cep": "03101010",
-                "cidade": "suzano",
-                "numero": "331",
-                "logradouro": "asd",
-                "complemento": "apto 47",
-                "bairro": "aaa",
-                "localidade": "asd"
-            },
-            "statusPedidoCorrida": "Feito_Pedido",
-            "estadoCivil": "SOLTEIRO",
-            "aluno": [
-                {
-                    "id": 1,
-                    "nome": "nomeAluno",
-                    "dataNascimento": "2022-05-10",
-                    "cpf": "555555555555",
-                    "telefone": "2312312323232"
-                }
-            ]
+          "id": 1,
+          "nome": "nomeAluno",
+          "dataNascimento": "2022-05-10",
+          "cpf": "555555555555",
+          "telefone": "2312312323232"
         }
-    ],
-    "pageable": {
-        "sort": {
-            "empty": true,
-            "sorted": false,
-            "unsorted": true
-        },
-        "offset": 0,
-        "pageNumber": 0,
-        "pageSize": 20,
-        "paged": true,
-        "unpaged": false
-    },
-    "last": true,
-    "totalPages": 1,
-    "totalElements": 1,
-    "size": 20,
-    "number": 0,
+      ]
+    }
+  ],
+  "pageable": {
     "sort": {
+      "empty": true,
+      "sorted": false,
+      "unsorted": true
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 20,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 1,
+  "size": 20,
+  "number": 0,
+  "sort": {
     "empty": true,
     "sorted": false,
     "unsorted": true
-    },
-    "first": true,
-    "numberOfElements": 1,
-    "empty": false
+  },
+  "first": true,
+  "numberOfElements": 1,
+  "empty": false
 }
 ```
 
@@ -229,7 +237,7 @@ Requisição do tipo PATCH para /motorista/aceitarCorrida/{id} e o payload envia
 
 ```json
 {
-    "idResponsavel": 1
+  "idResponsavel": 1
 }
 ```
 
@@ -237,49 +245,49 @@ Resposta esperada para esta requisição:
 
 ```json
 {
+  "id": 1,
+  "nome": "Responsavel4",
+  "dataNascimento": "2022-05-10T00:00:00.000+00:00",
+  "cpf": "555555555555",
+  "telefone": "2312312323232",
+  "endereco": {
+    "cep": "03101010",
+    "cidade": "suzano",
+    "numero": "331",
+    "logradouro": "asd",
+    "complemento": "apto 47",
+    "bairro": "aaa",
+    "localidade": "asd"
+  },
+  "statusPedidoCorrida": "Pedido_Aceito",
+  "estadoCivil": "SOLTEIRO",
+  "aluno": [
+    {
+      "id": 1,
+      "nome": "nomeAluno",
+      "dataNascimento": "2022-05-10",
+      "cpf": "555555555555",
+      "telefone": "2312312323232"
+    }
+  ],
+  "motorista": {
     "id": 1,
-    "nome": "Responsavel4",
-    "dataNascimento": "2022-05-10T00:00:00.000+00:00",
-    "cpf": "555555555555",
-    "telefone": "2312312323232",
+    "nome": "Motoristaatualiza21",
+    "cpf": "23232323232323",
+    "cnh": "23123123212",
     "endereco": {
-        "cep": "03101010",
-        "cidade": "suzano",
-        "numero": "331",
-        "logradouro": "asd",
-        "complemento": "apto 47",
-        "bairro": "aaa",
-        "localidade": "asd"
+      "cep": "03101010",
+      "cidade": "suzano",
+      "numero": "331",
+      "logradouro": "asd",
+      "complemento": "apto 47",
+      "bairro": "aaa",
+      "localidade": "asd"
     },
     "statusPedidoCorrida": "Pedido_Aceito",
-    "estadoCivil": "SOLTEIRO",
-    "aluno": [
-        {
-            "id": 1,
-            "nome": "nomeAluno",
-            "dataNascimento": "2022-05-10",
-            "cpf": "555555555555",
-            "telefone": "2312312323232"
-        }
-    ],
-    "motorista": {
-        "id": 1,
-        "nome": "Motoristaatualiza21",
-        "cpf": "23232323232323",
-        "cnh": "23123123212",
-        "endereco": {
-            "cep": "03101010",
-            "cidade": "suzano",
-            "numero": "331",
-            "logradouro": "asd",
-            "complemento": "apto 47",
-            "bairro": "aaa",
-            "localidade": "asd"
-        },
-        "statusPedidoCorrida": "Pedido_Aceito",
-        "telefone": "231232132323232",
-        "dataDeNascimento": null
-    }
+    "telefone": "231232132323232",
+    "dataDeNascimento": null
+  }
 }
 ```
 
@@ -289,283 +297,287 @@ Requisição do tipo GET para /motorista/negarCorrida/{id} e o payload enviado:
 
 ```json
 {
-    "idResponsavel": 1
+  "idResponsavel": 1
 }
 ```
+
 Resposta esperada para esta requisição:
 
 ```json
 {
+  "id": 1,
+  "nome": "Responsavel4",
+  "dataNascimento": "2022-05-10T00:00:00.000+00:00",
+  "cpf": "555555555555",
+  "telefone": "2312312323232",
+  "endereco": {
+    "cep": "03101010",
+    "cidade": "suzano",
+    "numero": "331",
+    "logradouro": "asd",
+    "complemento": "apto 47",
+    "bairro": "aaa",
+    "localidade": "asd"
+  },
+  "statusPedidoCorrida": "Pedido_Negado",
+  "estadoCivil": "SOLTEIRO",
+  "aluno": [
+    {
+      "id": 1,
+      "nome": "nomeAluno",
+      "dataNascimento": "2022-05-10",
+      "cpf": "555555555555",
+      "telefone": "2312312323232"
+    }
+  ],
+  "motorista": {
     "id": 1,
-    "nome": "Responsavel4",
-    "dataNascimento": "2022-05-10T00:00:00.000+00:00",
-    "cpf": "555555555555",
-    "telefone": "2312312323232",
+    "nome": "Motoristaatualiza21",
+    "cpf": "23232323232323",
+    "cnh": "23123123212",
     "endereco": {
-        "cep": "03101010",
-        "cidade": "suzano",
-        "numero": "331",
-        "logradouro": "asd",
-        "complemento": "apto 47",
-        "bairro": "aaa",
-        "localidade": "asd"
+      "cep": "03101010",
+      "cidade": "suzano",
+      "numero": "331",
+      "logradouro": "asd",
+      "complemento": "apto 47",
+      "bairro": "aaa",
+      "localidade": "asd"
     },
     "statusPedidoCorrida": "Pedido_Negado",
-    "estadoCivil": "SOLTEIRO",
-    "aluno": [
-        {
-            "id": 1,
-            "nome": "nomeAluno",
-            "dataNascimento": "2022-05-10",
-            "cpf": "555555555555",
-            "telefone": "2312312323232"
-        }
-    ],
-    "motorista": {
-        "id": 1,
-        "nome": "Motoristaatualiza21",
-        "cpf": "23232323232323",
-        "cnh": "23123123212",
-        "endereco": {
-            "cep": "03101010",
-            "cidade": "suzano",
-            "numero": "331",
-            "logradouro": "asd",
-            "complemento": "apto 47",
-            "bairro": "aaa",
-            "localidade": "asd"
-        },
-        "statusPedidoCorrida": "Pedido_Negado",
-        "telefone": "231232132323232",
-        "dataDeNascimento": null
-    }
+    "telefone": "231232132323232",
+    "dataDeNascimento": null
+  }
 }
 ```
+
 ## 2.7. POST /RESPONSAVEL
 
 Requisição do tipo POST para /responsavel e o payload enviado:
+
 ```json
 {
-    "nome":"Responsavel4",
-    "dataNascimento": "2022-05-10",
-    "cpf" : "555555555555",
-    "estadoCivil":"SOLTEIRO",
-    "telefone": "2312312323232",
-    "endereco": {
-        "cep":"03101010",
-        "cidade":"suzano",
-        "bairro":"aaa",
-        "complemento":"apto 47",
-        "numero":"331",
-        "localidade":"asd",
-        "logradouro":"asd"
-    },
-    "aluno": [
-        {
-            "nome":"nomeAluno",
-            "dataNascimento": "2022-05-10",
-            "cpf" : "555555555555",
-            "estadoCivil":"SOLTEIRO",
-            "telefone": "2312312323232"
-        }
-    ]
+  "nome": "Responsavel4",
+  "dataNascimento": "2022-05-10",
+  "cpf": "555555555555",
+  "estadoCivil": "SOLTEIRO",
+  "telefone": "2312312323232",
+  "endereco": {
+    "cep": "03101010",
+    "cidade": "suzano",
+    "bairro": "aaa",
+    "complemento": "apto 47",
+    "numero": "331",
+    "localidade": "asd",
+    "logradouro": "asd"
+  },
+  "aluno": [
+    {
+      "nome": "nomeAluno",
+      "dataNascimento": "2022-05-10",
+      "cpf": "555555555555",
+      "estadoCivil": "SOLTEIRO",
+      "telefone": "2312312323232"
+    }
+  ]
 }
 ```
+
 Resposta esperada para esta requisição:
+
 ```json
 {
-    "id": 1,
-    "nome": "Responsavel4",
-    "dataNascimento": "2022-05-10T00:00:00.000+00:00",
-    "cpf": "555555555555",
-    "telefone": "2312312323232",
-    "endereco": {
-        "cep": "03101010",
-        "cidade": "suzano",
-        "numero": "331",
-        "logradouro": "asd",
-        "complemento": "apto 47",
-        "bairro": "aaa",
-        "localidade": "asd"
-    },
-    "statusPedidoCorrida": null,
-    "estadoCivil": "SOLTEIRO",
-    "aluno": [
-        {
-            "id": 1,
-            "nome": "nomeAluno",
-            "dataNascimento": "2022-05-10",
-            "cpf": "555555555555",
-            "telefone": "2312312323232"
-        }
-    ]
+  "id": 1,
+  "nome": "Responsavel4",
+  "dataNascimento": "2022-05-10T00:00:00.000+00:00",
+  "cpf": "555555555555",
+  "telefone": "2312312323232",
+  "endereco": {
+    "cep": "03101010",
+    "cidade": "suzano",
+    "numero": "331",
+    "logradouro": "asd",
+    "complemento": "apto 47",
+    "bairro": "aaa",
+    "localidade": "asd"
+  },
+  "statusPedidoCorrida": null,
+  "estadoCivil": "SOLTEIRO",
+  "aluno": [
+    {
+      "id": 1,
+      "nome": "nomeAluno",
+      "dataNascimento": "2022-05-10",
+      "cpf": "555555555555",
+      "telefone": "2312312323232"
+    }
+  ]
 }
 ```
+
 ## 2.8. GET /RESPONSAVEL/MOTORISTA?CIDADE={TEXTO}
 
 Requisição do tipo GET para /responsavel/motorista?cidade={texto} e a resposta
 recebida:
+
 ```json
 {
-    "content": [
-        {
-            "id": 1,
-            "nome": "Motoristaatualiza21",
-            "cpf": "23232323232323",
-            "cnh": "23123123212",
-            "endereco": {
-                "cep": "03101010",
-                "cidade": "suzano",
-                "numero": "331",
-                "logradouro": "asd",
-                "complemento": "apto 47",
-                "bairro": "aaa",
-                "localidade": "asd"
-            },
-            "statusPedidoCorrida": "Feito_Pedido",
-            "telefone": "231232132323232",
-            "dataDeNascimento": null
-        }
-    ],
-    "pageable": {
-        "sort": {
-            "empty": true,
-            "sorted": false,
-            "unsorted": true
-        },
-        "offset": 0,
-        "pageNumber": 0,
-        "pageSize": 20,
-        "paged": true,
-        "unpaged": false
-    },
-    "last": true,
-    "totalPages": 1,
-    "totalElements": 1,
-    "size": 20,
-    "number": 0,
+  "content": [
+    {
+      "id": 1,
+      "nome": "Motoristaatualiza21",
+      "cpf": "23232323232323",
+      "cnh": "23123123212",
+      "endereco": {
+        "cep": "03101010",
+        "cidade": "suzano",
+        "numero": "331",
+        "logradouro": "asd",
+        "complemento": "apto 47",
+        "bairro": "aaa",
+        "localidade": "asd"
+      },
+      "statusPedidoCorrida": "Feito_Pedido",
+      "telefone": "231232132323232",
+      "dataDeNascimento": null
+    }
+  ],
+  "pageable": {
     "sort": {
-        "empty": true,
-        "sorted": false,
-        "unsorted": true
+      "empty": true,
+      "sorted": false,
+      "unsorted": true
     },
-    "first": true,
-    "numberOfElements": 1,
-    "empty": false
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 20,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 1,
+  "size": 20,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "sorted": false,
+    "unsorted": true
+  },
+  "first": true,
+  "numberOfElements": 1,
+  "empty": false
 }
 ```
+
 ## 2.9. PATCH /RESPONSAVEL/PEDIDO/{ID}
 
 Requisição do tipo PATCH para /responsavel/pedido/{id} e o payload enviado:
+
 ```json
 {
-    "idMotorista": 1
+  "idMotorista": 1
 }
 ```
+
 Resposta esperada para esta requisição:
+
 ```json
 {
+  "id": 1,
+  "nome": "Responsavel4",
+  "dataNascimento": "2022-05-10T00:00:00.000+00:00",
+  "cpf": "555555555555",
+  "telefone": "2312312323232",
+  "endereco": {
+    "cep": "03101010",
+    "cidade": "suzano",
+    "numero": "331",
+    "logradouro": "asd",
+    "complemento": "apto 47",
+    "bairro": "aaa",
+    "localidade": "asd"
+  },
+  "statusPedidoCorrida": "Feito_Pedido",
+  "estadoCivil": "SOLTEIRO",
+  "aluno": [
+    {
+      "id": 1,
+      "nome": "nomeAluno",
+      "dataNascimento": "2022-05-10",
+      "cpf": "555555555555",
+      "telefone": "2312312323232"
+    }
+  ],
+  "motorista": {
     "id": 1,
-    "nome": "Responsavel4",
-    "dataNascimento": "2022-05-10T00:00:00.000+00:00",
-    "cpf": "555555555555",
-    "telefone": "2312312323232",
+    "nome": "Motoristaatualiza21",
+    "cpf": "23232323232323",
+    "cnh": "23123123212",
     "endereco": {
-        "cep": "03101010",
-        "cidade": "suzano",
-        "numero": "331",
-        "logradouro": "asd",
-        "complemento": "apto 47",
-        "bairro": "aaa",
-        "localidade": "asd"
+      "cep": "03101010",
+      "cidade": "suzano",
+      "numero": "331",
+      "logradouro": "asd",
+      "complemento": "apto 47",
+      "bairro": "aaa",
+      "localidade": "asd"
     },
     "statusPedidoCorrida": "Feito_Pedido",
-    "estadoCivil": "SOLTEIRO",
-    "aluno": [
-        {
-            "id": 1,
-            "nome": "nomeAluno",
-            "dataNascimento": "2022-05-10",
-            "cpf": "555555555555",
-            "telefone": "2312312323232"
-        }
-    ],
-    "motorista": {
-        "id": 1,
-        "nome": "Motoristaatualiza21",
-        "cpf": "23232323232323",
-        "cnh": "23123123212",
-        "endereco": {
-            "cep": "03101010",
-            "cidade": "suzano",
-            "numero": "331",
-            "logradouro": "asd",
-            "complemento": "apto 47",
-            "bairro": "aaa",
-            "localidade": "asd"
-        },
-        "statusPedidoCorrida": "Feito_Pedido",
-        "telefone": "231232132323232",
-        "dataDeNascimento": null
-    }
+    "telefone": "231232132323232",
+    "dataDeNascimento": null
+  }
 }
-
 ```
+
 ## 2.10. GET /RESPONSAVEL/{ID}
 
 Requisição do tipo GET para /responsavel{id} e a resposta recebida:
-```json
-{
-
-    ## 2.10. GET /RESPONSAVEL/{ID}
-
-Requisição do tipo GET para /responsavel{id} e a resposta recebida:
 
 ```json
-
 {
-    
+  "id": 1,
+  "nome": "Responsavel4",
+  "dataNascimento": "2022-05-10T00:00:00.000+00:00",
+  "cpf": "555555555555",
+  "telefone": "2312312323232",
+  "endereco": {
+    "cep": "03101010",
+    "cidade": "suzano",
+    "numero": "331",
+    "logradouro": "asd",
+    "complemento": "apto 47",
+    "bairro": "aaa",
+    "localidade": "asd"
+  },
+  "statusPedidoCorrida": "Pedido_Negado",
+  "estadoCivil": "SOLTEIRO",
+  "aluno": [
+    {
+      "id": 1,
+      "nome": "nomeAluno",
+      "dataNascimento": "2022-05-10",
+      "cpf": "555555555555",
+      "telefone": "2312312323232"
+    }
+  ],
+  "motorista": {
     "id": 1,
-    "nome": "Responsavel4",
-    "dataNascimento": "2022-05-10T00:00:00.000+00:00",
-    "cpf": "555555555555",
-    "telefone": "2312312323232",
+    "nome": "Motoristaatualiza21",
+    "cpf": "23232323232323",
+    "cnh": "23123123212",
     "endereco": {
-        "cep": "03101010",
-        "cidade": "suzano",
-        "numero": "331",
-        "logradouro": "asd",
-        "complemento": "apto 47",
-        "bairro": "aaa",
-        "localidade": "asd"
+      "cep": "03101010",
+      "cidade": "suzano",
+      "numero": "331",
+      "logradouro": "asd",
+      "complemento": "apto 47",
+      "bairro": "aaa",
+      "localidade": "asd"
     },
     "statusPedidoCorrida": "Pedido_Negado",
-    "estadoCivil": "SOLTEIRO",
-    "aluno": [
-        {
-            "id": 1,
-            "nome": "nomeAluno",
-            "dataNascimento": "2022-05-10",
-            "cpf": "555555555555",
-            "telefone": "2312312323232"
-        }
-    ],
-    "motorista": {
-        "id": 1,
-        "nome": "Motoristaatualiza21",
-        "cpf": "23232323232323",
-        "cnh": "23123123212",
-        "endereco": {
-            "cep": "03101010",
-            "cidade": "suzano",
-            "numero": "331",
-            "logradouro": "asd",
-            "complemento": "apto 47",
-            "bairro": "aaa",
-            "localidade": "asd"
-        },
-        "statusPedidoCorrida": "Pedido_Negado",
-        "telefone": "231232132323232",
-        "dataDeNascimento": null
-    }
+    "telefone": "231232132323232",
+    "dataDeNascimento": null
+  }
 }
+```
