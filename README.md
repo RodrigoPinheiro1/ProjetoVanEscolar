@@ -1,12 +1,11 @@
 Nomes dos envolvidos no projeto:  
 
-Rodrigo Pinheiro Silva   
-ANA PAULA CARNEIRO DOS SANTOS MORAIS 
-HEIJI KATAYAMA  
-MARCELO ALVES DE MATOS FILHO   
-QUEZIA REGINA MACEDO SARRECCHIA  
-Ezio Teixeira  
-
+Rodrigo Pinheiro Silva  
+Ana Paula Carneiro dos Santos Morais
+Heiji Katayama  
+Marcelo Alves de Matos Filho  
+Quezia Regina Macedo Sarrecchia  
+Ezio Teixeira
 
 # Link Do Front [Van Escolar Front](https://secbus.flutterflow.app)
 
