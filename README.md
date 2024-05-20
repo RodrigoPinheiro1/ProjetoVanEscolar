@@ -1,14 +1,29 @@
 Nomes dos envolvidos no projeto:  
 
 Rodrigo Pinheiro Silva  
-Ana Paula Carneiro dos Santos Morais
-Heiji Katayama  
+Heiji Katayama
+Marcelo Alves Guimarães  
 Marcelo Alves de Matos Filho  
 Quezia Regina Macedo Sarrecchia  
 Ezio Teixeira
 
-# Link Do Front [Van Escolar Front](https://secbus.flutterflow.app)
+## Considerações e especificações
+No frontend, utilizamos a plataforma de low-code FlutterFlow que possui uma biblioteca vasta do framework Flutter. 
+Essa escolha nos permitiu desenvolver uma aplicação mais flexível e fluida, além de facilitar a criação de Progressive Web Apps (PWA). 
+O FlutterFlow oferece uma interface intuitiva que acelera o processo de desenvolvimento sem comprometer a qualidade ou a funcionalidade da aplicação. 
 
+Para o backend, optou-se pelo robusto conjunto de ferramentas do Spring, incluindo Spring Boot, Spring Data e Spring Framework, 
+aproveitando a potência do Java 17 para garantir a segurança e a eficiência do sistema. Como banco de dados, 
+foi escolhido o H2 para armazenamento de dados, garantindo confiabilidade e desempenho em todo o ciclo de vida da aplicação. 
+Além disso, conectamos nosso banco de dados Spring ao Firebase através de APIs. Essa integração foi fundamental, 
+pois o FlutterFlow possui integração nativa com o Firebase, o que simplifica a gestão de dados e a implementação 
+de funcionalidades em tempo real. Com essa configuração, conseguimos unir a robustez do Spring Boot com a praticidade 
+e eficiência do Firebase, essa abordagem resultou em uma aplicação moderna, sólida, escalável e própria para mobile, 
+pronta para atender às necessidades dos usuários de forma eficaz.
+
+# Link Do Front mobile (PWA) [Van Escolar Front](https://secbus-app.flutterflow.app)
+
+# Link Do vídeo [Apresentação Secbus](https://youtu.be/fc2o4od0Vy4)
 
 # Documentação das Requisições e Respostas da API
 
