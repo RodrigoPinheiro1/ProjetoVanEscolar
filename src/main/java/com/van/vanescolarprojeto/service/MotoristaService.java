@@ -1,10 +1,10 @@
 package com.van.vanescolarprojeto.service;
 
-import com.van.vanescolarprojeto.Dto.*;
-import com.van.vanescolarprojeto.Modelo.Automovel;
-import com.van.vanescolarprojeto.Modelo.Motorista;
-import com.van.vanescolarprojeto.Modelo.Responsavel;
-import com.van.vanescolarprojeto.Modelo.StatusPedidoCorrida;
+import com.van.vanescolarprojeto.dto.*;
+import com.van.vanescolarprojeto.modelo.Automovel;
+import com.van.vanescolarprojeto.modelo.Motorista;
+import com.van.vanescolarprojeto.modelo.Responsavel;
+import com.van.vanescolarprojeto.modelo.StatusPedidoCorrida;
 import com.van.vanescolarprojeto.Repository.MotoristaRepository;
 import com.van.vanescolarprojeto.Repository.ResponsavelRepository;
 import com.van.vanescolarprojeto.exceptions.UsuarioNaoEncontrado;
@@ -14,7 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 @Service
 public class MotoristaService {
@@ -35,7 +35,6 @@ public class MotoristaService {
 
         motorista.setAutomovel(automovel);
         motoristaRepository.save(motorista);
-
 
         return modelMapper.map(motorista, MotoristaAutomovelDto.class);
     }
@@ -84,8 +83,8 @@ public class MotoristaService {
                 .orElseThrow(UsuarioNaoEncontrado::new);
 
         responsavel.setStatusPedidoCorrida(StatusPedidoCorrida.Pedido_Negado);
-        motorista.setStatusPedidoCorrida(StatusPedidoCorrida.Pedido_Negado);
 
+        motorista.setStatusPedidoCorrida(StatusPedidoCorrida.Pedido_Negado);
         responsavel.setMotorista(motorista);
 
         responsavelRepository.save(responsavel);
@@ -121,5 +120,10 @@ public class MotoristaService {
         Motorista motorista = motoristaRepository.findById(idMotorista).orElseThrow(UsuarioNaoEncontrado::new);
         return modelMapper.map(motorista, MotoristaAutomovelDto.class);
 
+    }
+
+    public void deletarPeloId(Long idMotorista) {
+
+        motoristaRepository.deleteById(idMotorista);
     }
 }

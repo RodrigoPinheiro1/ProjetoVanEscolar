@@ -1,6 +1,6 @@
 package com.van.vanescolarprojeto.Repository;
 
-import com.van.vanescolarprojeto.Modelo.Aluno;
+import com.van.vanescolarprojeto.modelo.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

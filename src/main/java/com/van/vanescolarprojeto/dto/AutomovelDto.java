@@ -1,12 +1,9 @@
-package com.van.vanescolarprojeto.Dto;
+package com.van.vanescolarprojeto.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotBlank;
-
 @AllArgsConstructor
 @Data
 @NoArgsConstructor

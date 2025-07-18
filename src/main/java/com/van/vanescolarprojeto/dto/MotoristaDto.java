@@ -1,19 +1,21 @@
-package com.van.vanescolarprojeto.Dto;
+package com.van.vanescolarprojeto.dto;
 
 
-import com.van.vanescolarprojeto.Modelo.Endereco;
-import lombok.*;
+import com.van.vanescolarprojeto.modelo.Endereco;
+import com.van.vanescolarprojeto.modelo.StatusPedidoCorrida;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MotoristaAutomovelDto {
+public class MotoristaDto {
 
     private Long id;
 
@@ -27,10 +29,10 @@ public class MotoristaAutomovelDto {
     @NotNull
     @NotBlank
     private String cnh;
-
-    @Valid
-    @NotNull
     private Endereco endereco;
+
+    private StatusPedidoCorrida statusPedidoCorrida;
+
 
     @NotNull
     @NotBlank
@@ -39,7 +41,4 @@ public class MotoristaAutomovelDto {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date dataDeNascimento;
 
-    @NotNull
-    @Valid
-    private AutomovelDto automovel;
 }

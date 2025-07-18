@@ -1,14 +1,14 @@
-package com.van.vanescolarprojeto.Dto;
+package com.van.vanescolarprojeto.dto;
 
-import com.van.vanescolarprojeto.Modelo.Endereco;
-import com.van.vanescolarprojeto.Modelo.EstadoCivil;
-import com.van.vanescolarprojeto.Modelo.StatusPedidoCorrida;
+import com.van.vanescolarprojeto.modelo.Endereco;
+import com.van.vanescolarprojeto.modelo.EstadoCivil;
+import com.van.vanescolarprojeto.modelo.StatusPedidoCorrida;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 

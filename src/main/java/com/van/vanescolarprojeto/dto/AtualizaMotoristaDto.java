@@ -1,15 +1,12 @@
-package com.van.vanescolarprojeto.Dto;
+package com.van.vanescolarprojeto.dto;
 
-import com.van.vanescolarprojeto.Modelo.Endereco;
+import com.van.vanescolarprojeto.modelo.Endereco;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -36,7 +33,6 @@ public class AtualizaMotoristaDto {
     @NotNull
     @NotBlank
     private String telefone;
-
 
     @Valid
     private AutomovelDto automovel;

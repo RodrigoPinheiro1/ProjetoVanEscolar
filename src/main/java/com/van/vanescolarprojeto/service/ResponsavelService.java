@@ -1,11 +1,11 @@
 package com.van.vanescolarprojeto.service;
 
-import com.van.vanescolarprojeto.Dto.PedidoCorridaResponsavelDto;
-import com.van.vanescolarprojeto.Dto.ResponsavelDto;
-import com.van.vanescolarprojeto.Dto.ResponsavelMotoristaDto;
-import com.van.vanescolarprojeto.Modelo.Motorista;
-import com.van.vanescolarprojeto.Modelo.Responsavel;
-import com.van.vanescolarprojeto.Modelo.StatusPedidoCorrida;
+import com.van.vanescolarprojeto.dto.PedidoCorridaResponsavelDto;
+import com.van.vanescolarprojeto.dto.ResponsavelDto;
+import com.van.vanescolarprojeto.dto.ResponsavelMotoristaDto;
+import com.van.vanescolarprojeto.modelo.Motorista;
+import com.van.vanescolarprojeto.modelo.Responsavel;
+import com.van.vanescolarprojeto.modelo.StatusPedidoCorrida;
 import com.van.vanescolarprojeto.Repository.MotoristaRepository;
 import com.van.vanescolarprojeto.Repository.ResponsavelRepository;
 import com.van.vanescolarprojeto.exceptions.UsuarioNaoEncontrado;

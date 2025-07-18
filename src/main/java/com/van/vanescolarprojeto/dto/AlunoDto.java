@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.Dto;
+package com.van.vanescolarprojeto.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
