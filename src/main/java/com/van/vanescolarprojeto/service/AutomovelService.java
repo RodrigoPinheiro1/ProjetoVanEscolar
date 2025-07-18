@@ -1,7 +1,7 @@
 package com.van.vanescolarprojeto.service;
 
-import com.van.vanescolarprojeto.Dto.MotoristaAutomovelDto;
-import com.van.vanescolarprojeto.Modelo.Motorista;
+import com.van.vanescolarprojeto.dto.MotoristaAutomovelDto;
+import com.van.vanescolarprojeto.modelo.Motorista;
 import com.van.vanescolarprojeto.Repository.MotoristaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

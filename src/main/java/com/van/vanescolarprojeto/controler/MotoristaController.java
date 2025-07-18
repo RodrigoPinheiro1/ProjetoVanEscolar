@@ -1,46 +1,45 @@
 package com.van.vanescolarprojeto.controler;
 
-import com.van.vanescolarprojeto.Dto.*;
+import com.van.vanescolarprojeto.dto.*;
 import com.van.vanescolarprojeto.service.MotoristaService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import javax.validation.Valid;
-import java.net.URI;
 
 @RestController
-@RequestMapping("/motorista")
+@RequestMapping("/motoristas")
+@RequiredArgsConstructor
+@Validated
 public class MotoristaController {
 
 
-    @Autowired
-    private MotoristaService motoristaService;
+    private final MotoristaService motoristaService;
 
 
     @PostMapping
-    public ResponseEntity<MotoristaAutomovelDto> cadastrarMotorista(@RequestBody @Valid MotoristaAutomovelDto motoristaAutomovelDto,
-                                                                    UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<MotoristaAutomovelDto> cadastrarMotorista(@RequestBody @Valid
+                                                                    @NotNull MotoristaAutomovelDto motoristaAutomovelDto) {
 
         MotoristaAutomovelDto dto = motoristaService.cadastrarMotorista(motoristaAutomovelDto);
 
-        URI uri = uriComponentsBuilder.path("/motorista/{id}").buildAndExpand(motoristaAutomovelDto.getId()).toUri();
-        return ResponseEntity.created(uri).body(dto);
+        return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @GetMapping("/pedidos/{idMotorista}")
-    public Page<ResponsavelDto> verPedidosCorridas(@PathVariable Long idMotorista, Pageable pageable) {
-
+    public Page<ResponsavelDto> verPedidosCorridas(@PathVariable @NotNull Long idMotorista, Pageable pageable) {
 
         return motoristaService.verPedidosCorridas(idMotorista, pageable);
     }
 
-    @PatchMapping("/aceitarCorrida/{idMotorista}")
-    public ResponseEntity<ResponsavelMotoristaDto> aceitarCorrida(@PathVariable Long idMotorista,
-                                                                  @RequestBody PedidoCorridaMotoristaDto pedidoCorridaMotoristaDto) {
+    @PatchMapping("/aceita-corridas/{idMotorista}")
+    public ResponseEntity<ResponsavelMotoristaDto> aceitarCorrida(@PathVariable @NotNull Long idMotorista,
+                                                                  @RequestBody @NotNull @Valid PedidoCorridaMotoristaDto pedidoCorridaMotoristaDto) {
 
         ResponsavelMotoristaDto dto = motoristaService.aceitarCorrida(idMotorista, pedidoCorridaMotoristaDto);
 
@@ -48,8 +47,10 @@ public class MotoristaController {
         return ResponseEntity.ok(dto);
     }
 
-    @PatchMapping("/negarCorrida/{idMotorista}")
-    public ResponseEntity<ResponsavelMotoristaDto> negarCorrida(@PathVariable Long idMotorista,
+
+
+    @PatchMapping("/nega-corridas/{idMotorista}")
+    public ResponseEntity<ResponsavelMotoristaDto> negarCorrida(@PathVariable @NotNull Long idMotorista,
                                                                 @RequestBody PedidoCorridaMotoristaDto pedidoCorridaMotoristaDto) {
 
         ResponsavelMotoristaDto dto = motoristaService.negarCorrida(idMotorista, pedidoCorridaMotoristaDto);
@@ -59,22 +60,29 @@ public class MotoristaController {
     }
 
     @PutMapping("/{idMotorista}")
-    public ResponseEntity<AtualizaMotoristaDto> atualizarMotorista(@PathVariable Long idMotorista,
+    public ResponseEntity<AtualizaMotoristaDto> atualizarMotorista(@PathVariable @NotNull Long idMotorista,
                                                                    @RequestBody @Valid AtualizaMotoristaDto motoristaAutomovelDto) {
 
         AtualizaMotoristaDto dto = motoristaService.atualizarMotorista(idMotorista, motoristaAutomovelDto);
 
-
         return ResponseEntity.ok(dto);
     }
 
-
     @GetMapping("/{idMotorista}")
-    public ResponseEntity<MotoristaAutomovelDto> atualizarMotoristaAutomovel(@PathVariable Long idMotorista) {
+    public ResponseEntity<MotoristaAutomovelDto> atualizarMotoristaAutomovel(@PathVariable @NotNull Long idMotorista) {
 
         MotoristaAutomovelDto id = motoristaService.findById(idMotorista);
 
         return ResponseEntity.ok(id);
+    }
+
+
+    @DeleteMapping("/{idMotorista}")
+    public ResponseEntity<String> deletaMotorista(@PathVariable @NotNull Long idMotorista) {
+
+        motoristaService.deletarPeloId(idMotorista);
+
+        return ResponseEntity.noContent().build();
     }
 
 

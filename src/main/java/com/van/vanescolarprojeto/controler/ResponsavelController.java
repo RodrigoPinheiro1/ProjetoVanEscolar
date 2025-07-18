@@ -1,9 +1,10 @@
 package com.van.vanescolarprojeto.controler;
 
 
-import com.van.vanescolarprojeto.Dto.*;
+import com.van.vanescolarprojeto.dto.*;
 import com.van.vanescolarprojeto.service.MotoristaService;
 import com.van.vanescolarprojeto.service.ResponsavelService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,18 +12,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+
 import java.net.URI;
 
 @RestController
-@RequestMapping("/responsavel")
+@RequestMapping("/responsaveis")
+@RequiredArgsConstructor
 public class ResponsavelController {
 
-    @Autowired
-    private ResponsavelService responsavelService;
+    private final ResponsavelService responsavelService;
 
-    @Autowired
-    private MotoristaService motoristaService;
+    private final MotoristaService motoristaService;
 
     @PostMapping
     public ResponseEntity<ResponsavelDto> cadastrarResponsavel(@RequestBody @Valid ResponsavelDto dto,
@@ -34,7 +35,7 @@ public class ResponsavelController {
         return ResponseEntity.created(uri).body(responsavelDto);
     }
 
-    @GetMapping("/motorista")
+    @GetMapping("/motoristas")
     public Page<MotoristaDto> procurarMotorista(@RequestParam String cidade,
                                                 @RequestParam(required = false) String bairro,
                                                 Pageable pageable) {
@@ -45,7 +46,7 @@ public class ResponsavelController {
 
     @PatchMapping("/pedido/{idResponsavel}")
     public ResponseEntity<ResponsavelMotoristaDto> pedirCorridas(@PathVariable Long idResponsavel,
-                                           @RequestBody @Valid PedidoCorridaResponsavelDto pedidoCorrida) {
+                                                                 @RequestBody @Valid PedidoCorridaResponsavelDto pedidoCorrida) {
 
         ResponsavelMotoristaDto responsavelMotoristaDto = responsavelService.solicitarCorrida(idResponsavel, pedidoCorrida);
 
@@ -54,7 +55,7 @@ public class ResponsavelController {
     }
 
     @GetMapping("/{id}")
-    public ResponsavelMotoristaDto procurarMotorista(@PathVariable Long id){
+    public ResponsavelMotoristaDto procurarMotorista(@PathVariable Long id) {
 
         return responsavelService.findByid(id);
 

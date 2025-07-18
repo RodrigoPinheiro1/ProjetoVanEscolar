@@ -1,7 +1,5 @@
 package com.van.vanescolarprojeto.exceptions;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.validation.FieldError;
 
 

@@ -1,6 +1,6 @@
 package com.van.vanescolarprojeto.Repository;
 
-import com.van.vanescolarprojeto.Modelo.Responsavel;
+import com.van.vanescolarprojeto.modelo.Responsavel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
