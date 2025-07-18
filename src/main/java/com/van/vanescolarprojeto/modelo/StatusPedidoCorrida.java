@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.Modelo;
+package com.van.vanescolarprojeto.modelo;
 
 public enum StatusPedidoCorrida {
 
