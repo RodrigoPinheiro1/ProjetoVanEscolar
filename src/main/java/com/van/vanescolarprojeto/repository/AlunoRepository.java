@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.Repository;
+package com.van.vanescolarprojeto.repository;
 
 import com.van.vanescolarprojeto.modelo.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.Repository;
+package com.van.vanescolarprojeto.repository;
 
 import com.van.vanescolarprojeto.modelo.Motorista;
 import org.springframework.data.domain.Page;

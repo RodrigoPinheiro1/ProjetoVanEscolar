@@ -1,4 +1,4 @@
-package com.van.vanescolarprojeto.Repository;
+package com.van.vanescolarprojeto.repository;
 
 import com.van.vanescolarprojeto.modelo.Automovel;
 import org.springframework.data.jpa.repository.JpaRepository;

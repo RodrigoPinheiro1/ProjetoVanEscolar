@@ -5,11 +5,11 @@ import com.van.vanescolarprojeto.modelo.Automovel;
 import com.van.vanescolarprojeto.modelo.Motorista;
 import com.van.vanescolarprojeto.modelo.Responsavel;
 import com.van.vanescolarprojeto.modelo.StatusPedidoCorrida;
-import com.van.vanescolarprojeto.Repository.MotoristaRepository;
-import com.van.vanescolarprojeto.Repository.ResponsavelRepository;
+import com.van.vanescolarprojeto.repository.MotoristaRepository;
+import com.van.vanescolarprojeto.repository.ResponsavelRepository;
 import com.van.vanescolarprojeto.exceptions.UsuarioNaoEncontrado;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,16 +17,15 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class MotoristaService {
 
-    @Autowired
-    private MotoristaRepository motoristaRepository;
 
-    @Autowired
-    private ResponsavelRepository responsavelRepository;
+    private final MotoristaRepository motoristaRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ResponsavelRepository responsavelRepository;
+
+    private final ModelMapper modelMapper;
 
     public MotoristaAutomovelDto cadastrarMotorista(MotoristaAutomovelDto motoristaAutomovelDto) {
 
@@ -61,10 +60,8 @@ public class MotoristaService {
         Motorista motorista = motoristaRepository.findById(idMotorista)
                 .orElseThrow(UsuarioNaoEncontrado::new);
 
-
         responsavel.setStatusPedidoCorrida(StatusPedidoCorrida.Pedido_Aceito);
         motorista.setStatusPedidoCorrida(StatusPedidoCorrida.Pedido_Aceito);
-
 
         responsavel.setMotorista(motorista);
 
@@ -83,12 +80,10 @@ public class MotoristaService {
                 .orElseThrow(UsuarioNaoEncontrado::new);
 
         responsavel.setStatusPedidoCorrida(StatusPedidoCorrida.Pedido_Negado);
-
         motorista.setStatusPedidoCorrida(StatusPedidoCorrida.Pedido_Negado);
         responsavel.setMotorista(motorista);
 
         responsavelRepository.save(responsavel);
-
 
         return modelMapper.map(responsavel, ResponsavelMotoristaDto.class);
     }
@@ -123,7 +118,6 @@ public class MotoristaService {
     }
 
     public void deletarPeloId(Long idMotorista) {
-
         motoristaRepository.deleteById(idMotorista);
     }
 }
