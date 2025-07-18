@@ -1,20 +1,19 @@
 package com.van.vanescolarprojeto.controler;
 
 
-import com.van.vanescolarprojeto.dto.*;
+import com.van.vanescolarprojeto.dto.MotoristaDto;
+import com.van.vanescolarprojeto.dto.PedidoCorridaResponsavelDto;
+import com.van.vanescolarprojeto.dto.ResponsavelDto;
+import com.van.vanescolarprojeto.dto.ResponsavelMotoristaDto;
 import com.van.vanescolarprojeto.service.MotoristaService;
 import com.van.vanescolarprojeto.service.ResponsavelService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import jakarta.validation.Valid;
-
-import java.net.URI;
 
 @RestController
 @RequestMapping("/responsaveis")
@@ -26,13 +25,12 @@ public class ResponsavelController {
     private final MotoristaService motoristaService;
 
     @PostMapping
-    public ResponseEntity<ResponsavelDto> cadastrarResponsavel(@RequestBody @Valid ResponsavelDto dto,
-                                                               UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<ResponsavelDto> cadastrarResponsavel(@RequestBody @Valid ResponsavelDto dto) {
 
 
         ResponsavelDto responsavelDto = responsavelService.cadastrarResponsavel(dto);
-        URI uri = uriComponentsBuilder.path("/responsavel/{id}").buildAndExpand(dto.getId()).toUri();
-        return ResponseEntity.created(uri).body(responsavelDto);
+           return new ResponseEntity<>(responsavelDto, HttpStatus.CREATED);
+
     }
 
     @GetMapping("/motoristas")
