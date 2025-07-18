@@ -1,9 +1,6 @@
 package mocks;
 
-import com.van.vanescolarprojeto.dto.AlunoDto;
-import com.van.vanescolarprojeto.dto.AutomovelDto;
-import com.van.vanescolarprojeto.dto.MotoristaAutomovelDto;
-import com.van.vanescolarprojeto.dto.ResponsavelDto;
+import com.van.vanescolarprojeto.dto.*;
 import com.van.vanescolarprojeto.modelo.Endereco;
 import com.van.vanescolarprojeto.modelo.EstadoCivil;
 import com.van.vanescolarprojeto.modelo.StatusPedidoCorrida;
@@ -30,6 +27,17 @@ public class MockObjects {
 
         return new MotoristaAutomovelDto(1L, "sad", "cpf", "cof", endereco(),
                 "asdasd", Date.from(Instant.now()), automovelDto());
+    }
+
+
+    public static Page<MotoristaDto> motoristaDtoPage() {
+
+        MotoristaDto motoristaDto = new MotoristaDto();
+
+        List<MotoristaDto> lista = List.of(motoristaDto);
+
+        return new PageImpl<>(lista, PageRequest.of(0, lista.size()), lista.size());
+
     }
 
     public static Page<ResponsavelDto> responsavelDtoPage() {

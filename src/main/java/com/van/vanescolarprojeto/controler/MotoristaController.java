@@ -48,6 +48,14 @@ public class MotoristaController {
     }
 
 
+    @GetMapping("/motoristas")
+    public Page<MotoristaDto> procurarMotorista(@RequestParam String cidade,
+                                                @RequestParam(required = false) String bairro,
+                                                Pageable pageable) {
+
+        return motoristaService.acharMotorista(cidade, bairro, pageable);
+
+    }
 
     @PatchMapping("/nega-corridas/{idMotorista}")
     public ResponseEntity<ResponsavelMotoristaDto> negarCorrida(@PathVariable @NotNull Long idMotorista,

@@ -1,16 +1,12 @@
 package com.van.vanescolarprojeto.controler;
 
 
-import com.van.vanescolarprojeto.dto.MotoristaDto;
 import com.van.vanescolarprojeto.dto.PedidoCorridaResponsavelDto;
 import com.van.vanescolarprojeto.dto.ResponsavelDto;
 import com.van.vanescolarprojeto.dto.ResponsavelMotoristaDto;
-import com.van.vanescolarprojeto.service.MotoristaService;
 import com.van.vanescolarprojeto.service.ResponsavelService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +18,6 @@ public class ResponsavelController {
 
     private final ResponsavelService responsavelService;
 
-    private final MotoristaService motoristaService;
-
     @PostMapping
     public ResponseEntity<ResponsavelDto> cadastrarResponsavel(@RequestBody @Valid ResponsavelDto dto) {
 
@@ -33,14 +27,7 @@ public class ResponsavelController {
 
     }
 
-    @GetMapping("/motoristas")
-    public Page<MotoristaDto> procurarMotorista(@RequestParam String cidade,
-                                                @RequestParam(required = false) String bairro,
-                                                Pageable pageable) {
 
-        return motoristaService.acharMotorista(cidade, bairro, pageable);
-
-    }
 
     @PatchMapping("/pedido/{idResponsavel}")
     public ResponseEntity<ResponsavelMotoristaDto> pedirCorridas(@PathVariable Long idResponsavel,

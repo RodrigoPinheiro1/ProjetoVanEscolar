@@ -2,6 +2,7 @@ package com.van.vanescolarprojeto.controler;
 
 import com.van.vanescolarprojeto.dto.AtualizaMotoristaDto;
 import com.van.vanescolarprojeto.dto.MotoristaAutomovelDto;
+import com.van.vanescolarprojeto.dto.MotoristaDto;
 import com.van.vanescolarprojeto.dto.ResponsavelDto;
 import com.van.vanescolarprojeto.service.MotoristaService;
 import org.junit.jupiter.api.Test;
@@ -14,10 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import javax.print.attribute.standard.ReferenceUriSchemesSupported;
-
 import static mocks.MockObjects.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -85,20 +85,23 @@ class MotoristaControllerTest {
 
     }
 
+
     @Test
-    void atualizarMotoristaAutomovel() {
-
-        when(motoristaService.atualizarMotorista(any(), any())).
-                thenReturn(new AtualizaMotoristaDto());
+    void pageMotorista() {
 
 
-        ResponseEntity<AtualizaMotoristaDto> result = motoristaController.atualizarMotorista(1L, new AtualizaMotoristaDto());
+        when(motoristaService.acharMotorista(any(), any(),any())).
+                thenReturn(motoristaDtoPage());
 
 
-        assertEquals(HttpStatus.OK, result.getStatusCode());
-        assertNotNull(result);
+        Page<MotoristaDto> motoristaDtos = motoristaController.procurarMotorista
+                ("cidade", "vbairro", Pageable.unpaged());
+
+
+        assertNotNull(motoristaDtos);
 
     }
+
 
     @Test
     void deletaMotorista() {
@@ -106,10 +109,9 @@ class MotoristaControllerTest {
 
         motoristaService.deletarPeloId(any());
 
-        ResponseEntity<AtualizaMotoristaDto> result = motoristaController.atualizarMotorista(1L, new AtualizaMotoristaDto());
+        ResponseEntity<String> result = motoristaController.deletaMotorista(1L);
 
-
-        assertEquals(HttpStatus.OK, result.getStatusCode());
+        assertEquals(HttpStatus.NO_CONTENT, result.getStatusCode());
         assertNotNull(result);
 
     }
