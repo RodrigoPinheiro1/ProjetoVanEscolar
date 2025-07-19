@@ -61,13 +61,7 @@ class MotoristaControllerTest {
 
     }
 
-    @Test
-    void aceitarCorrida() {
-    }
 
-    @Test
-    void negarCorrida() {
-    }
 
     @Test
     void atualizarMotorista() {
