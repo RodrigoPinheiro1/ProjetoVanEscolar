@@ -1,0 +1,64 @@
+@startuml
+actor Cliente
+participant "MotoristaController" as Controller
+participant "MotoristaService" as Service
+participant "MotoristaRepository" as Repository
+database "Banco de Dados" as DB
+
+== POST /motoristas ==
+Cliente -> Controller : POST /motoristas\nMotoristaAutomovelDto
+Controller -> Service : cadastrarMotorista(dto)
+Service -> Service : validar dados\nconverter DTO em entidade
+Service -> Repository : save(motorista)
+Repository -> DB : insert motorista + automóvel
+DB --> Repository : Motorista salvo
+Repository --> Service : Motorista salvo
+Service --> Controller : Motorista salvo
+Controller --> Cliente : HTTP 201 Created + body
+
+== GET /motoristas?cidade=b... ==
+Cliente -> Controller : GET /motoristas\ncidade, bairro, pageable
+Controller -> Service : acharMotorista(cidade, bairro, pageable)
+Service -> Repository : findByCidadeAndBairro()
+Repository -> DB : select * from motorista where cidade = ? [and bairro = ?]
+DB --> Repository : lista de motoristas
+Repository --> Service : lista de motoristas
+Service --> Controller : Page<MotoristaDto>
+Controller --> Cliente : HTTP 200 OK + body
+
+== PUT /{idMotorista} ==
+Cliente -> Controller : PUT /{idMotorista}\nAtualizaMotoristaDto
+Controller -> Service : atualizarMotorista(id, dto)
+Service -> Repository : findById(id)
+Repository -> DB : select * from motorista where id = ?
+DB --> Repository : motorista atual
+Repository --> Service : motorista atual
+Service -> Service : aplicar atualizações no motorista
+Service -> Repository : save(motorista atualizado)
+Repository -> DB : update motorista
+DB --> Repository : OK
+Repository --> Service : motorista atualizado
+Service --> Controller : AtualizaMotoristaDto
+Controller --> Cliente : HTTP 200 OK + body
+
+== GET /{idMotorista} ==
+Cliente -> Controller : GET /{idMotorista}
+Controller -> Service : findById(idMotorista)
+Service -> Repository : findById(id)
+Repository -> DB : select * from motorista where id = ?
+DB --> Repository : motorista encontrado
+Repository --> Service : motorista
+Service --> Controller : MotoristaAutomovelDto
+Controller --> Cliente : HTTP 200 OK + body
+
+== DELETE /{idMotorista} ==
+Cliente -> Controller : DELETE /{idMotorista}
+Controller -> Service : deletarPeloId(idMotorista)
+Service -> Repository : deleteById(id)
+Repository -> DB : delete from motorista where id = ?
+DB --> Repository : OK
+Repository --> Service : OK
+Service --> Controller : OK
+Controller --> Cliente : HTTP 204 No Content
+
+@enduml
