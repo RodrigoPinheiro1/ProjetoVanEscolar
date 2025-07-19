@@ -1,13 +1,10 @@
 package mocks;
 
 import com.van.vanescolarprojeto.dto.*;
-import com.van.vanescolarprojeto.modelo.Endereco;
-import com.van.vanescolarprojeto.modelo.EstadoCivil;
-import com.van.vanescolarprojeto.modelo.StatusPedidoCorrida;
+import com.van.vanescolarprojeto.modelo.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -62,4 +59,28 @@ public class MockObjects {
 
         return new Endereco("sdasd", "sadasd", "asdasd", "asdasd", "asdasd", "asdasd", "asdasd");
     }
+
+    public static Motorista motorista() {
+        Motorista motorista = new Motorista();
+        motorista.setId(1L);
+        motorista.setNome("João");
+        motorista.setCnh("123456");
+        motorista.setTelefone("11999999999");
+        motorista.setEndereco(endereco());
+        motorista.setStatusPedidoCorrida(null); // será definido no teste
+        return motorista;
+    }
+
+    public static Responsavel responsavel() {
+        Responsavel responsavel = new Responsavel();
+        responsavel.setId(10L);
+        responsavel.setNome("Maria");
+        responsavel.setDataNascimento(Date.from(Instant.now()));
+        responsavel.setEndereco(endereco());
+        responsavel.setStatusPedidoCorrida(null); // será definido no teste
+        responsavel.setEstadoCivil(EstadoCivil.CASADO);
+        return responsavel;
+    }
+
+
 }

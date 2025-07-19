@@ -1,16 +1,11 @@
 package com.van.vanescolarprojeto.service;
 
-import com.van.vanescolarprojeto.dto.AtualizaMotoristaDto;
-import com.van.vanescolarprojeto.dto.MotoristaAutomovelDto;
-import com.van.vanescolarprojeto.dto.MotoristaDto;
-import com.van.vanescolarprojeto.dto.ResponsavelDto;
-import com.van.vanescolarprojeto.modelo.Automovel;
-import com.van.vanescolarprojeto.modelo.Endereco;
-import com.van.vanescolarprojeto.modelo.Motorista;
-import com.van.vanescolarprojeto.modelo.Responsavel;
+import com.van.vanescolarprojeto.dto.*;
+import com.van.vanescolarprojeto.modelo.*;
 import com.van.vanescolarprojeto.repository.MotoristaRepository;
 import com.van.vanescolarprojeto.repository.ResponsavelRepository;
 import com.van.vanescolarprojeto.utils.MapperMotoristaUtils;
+import mocks.MockObjects;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,14 +21,20 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class MotoristaServiceTest {
+class MotoristaServiceTest {
 
     @Mock
     private MotoristaRepository motoristaRepository;
 
+    @Mock
+    private GeradorArquivoService geradorArquivoService;
     @Mock
     private ResponsavelRepository responsavelRepository;
 
@@ -48,50 +49,51 @@ public class MotoristaServiceTest {
 
     @Test
     void testCadastrarMotorista() {
-        MotoristaAutomovelDto dto = new MotoristaAutomovelDto();
-        Motorista motorista = new Motorista();
+        MotoristaAutomovelDto dto = MockObjects.motoristaAutomovelDto();
+        Motorista motorista = MockObjects.motorista();
 
-        Mockito.when(mapperMotoristaUtils.motoristaAutomovelDTOtoMotorista(dto)).thenReturn(motorista);
-        Mockito.when(mapperMotoristaUtils.motoristaToMotoristaAutomovelDTO(motorista)).thenReturn(dto);
+        when(mapperMotoristaUtils.motoristaAutomovelDTOtoMotorista(dto)).thenReturn(motorista);
+        when(mapperMotoristaUtils.motoristaToMotoristaAutomovelDTO(motorista)).thenReturn(dto);
 
         MotoristaAutomovelDto result = motoristaService.cadastrarMotorista(dto);
 
-        Mockito.verify(motoristaRepository).save(motorista);
-        Assertions.assertEquals(dto, result);
+        verify(motoristaRepository).save(motorista);
+        verify(geradorArquivoService).salvarMotoristaEmArquivo(motorista);
+        assertEquals(dto, result);
     }
 
     @Test
     void testAcharMotorista() {
         Pageable pageable = PageRequest.of(0, 10);
-        Motorista motorista = new Motorista();
+        Motorista motorista = MockObjects.motorista();
         MotoristaDto dto = new MotoristaDto();
 
-        Mockito.when(motoristaRepository.findByEndereco_CidadeOrEndereco_Bairro("cidade", "bairro", pageable))
+        when(motoristaRepository.findByEndereco_CidadeOrEndereco_Bairro("cidade", "bairro", pageable))
                 .thenReturn(new PageImpl<>(List.of(motorista)));
 
-        Mockito.when(mapperMotoristaUtils.motoristaToMotoristaDTO(motorista)).thenReturn(dto);
+        when(mapperMotoristaUtils.motoristaToMotoristaDTO(motorista)).thenReturn(dto);
 
         Page<MotoristaDto> result = motoristaService.acharMotorista("cidade", "bairro", pageable);
 
-        Assertions.assertEquals(1, result.getTotalElements());
-        Assertions.assertEquals(dto, result.getContent().get(0));
+        assertEquals(1, result.getTotalElements());
+        assertEquals(dto, result.getContent().get(0));
     }
 
     @Test
     void testVerPedidosCorridas() {
         Pageable pageable = PageRequest.of(0, 10);
-        Responsavel responsavel = new Responsavel();
+        Responsavel responsavel = MockObjects.responsavel();
         ResponsavelDto dto = new ResponsavelDto();
 
-        Mockito.when(responsavelRepository.acharPorPedidoFeito(1L, pageable))
+        when(responsavelRepository.acharPorPedidoFeito(1L, pageable))
                 .thenReturn(new PageImpl<>(List.of(responsavel)));
 
-        Mockito.when(mapperResponsavelUtils.responsavelToResponsavelDTO(responsavel)).thenReturn(dto);
+        when(mapperResponsavelUtils.responsavelToResponsavelDTO(responsavel)).thenReturn(dto);
 
         Page<ResponsavelDto> result = motoristaService.verPedidosCorridas(1L, pageable);
 
-        Assertions.assertEquals(1, result.getTotalElements());
-        Assertions.assertEquals(dto, result.getContent().get(0));
+        assertEquals(1, result.getTotalElements());
+        assertEquals(dto, result.getContent().get(0));
     }
 
     @Test
@@ -100,20 +102,21 @@ public class MotoristaServiceTest {
         dto.setNome("João");
         dto.setCnh("123");
         dto.setTelefone("999");
-        Endereco endereco = new Endereco();
-        dto.setEndereco(endereco);
-        Automovel automovel = new Automovel();
-        Motorista motorista = new Motorista();
-        motorista.setAutomovel(automovel);
+        dto.setEndereco(MockObjects.endereco());
 
-        Mockito.when(motoristaRepository.findById(1L)).thenReturn(Optional.of(new Motorista()));
-        Mockito.when(mapperMotoristaUtils.atualizaMotoristaDtoToMotorista(dto)).thenReturn(motorista);
-        Mockito.when(mapperMotoristaUtils.motoristaToAtualizaMotoristaDTO(motorista)).thenReturn(dto);
+        Motorista motorista = MockObjects.motorista();
+        motorista.setAutomovel(new Automovel()); // necessário para simular automóvel
+
+        when(motoristaRepository.findById(1L)).thenReturn(Optional.of(new Motorista()));
+        when(mapperMotoristaUtils.atualizaMotoristaDtoToMotorista(dto)).thenReturn(motorista);
+        when(mapperMotoristaUtils.motoristaToAtualizaMotoristaDTO(motorista)).thenReturn(dto);
 
         AtualizaMotoristaDto result = motoristaService.atualizarMotorista(1L, dto);
 
-        Mockito.verify(motoristaRepository).save(motorista);
-        Assertions.assertEquals(dto, result);
+        verify(motoristaRepository).save(motorista);
+        verify(geradorArquivoService).salvarMudancaEmArquivo(any(), eq(motorista)); // caso queira simular diferença
+        assertEquals(dto, result);
+
     }
 
     @Test
@@ -121,17 +124,69 @@ public class MotoristaServiceTest {
         Motorista motorista = new Motorista();
         MotoristaAutomovelDto dto = new MotoristaAutomovelDto();
 
-        Mockito.when(motoristaRepository.findById(1L)).thenReturn(Optional.of(motorista));
-        Mockito.when(mapperMotoristaUtils.motoristaToMotoristaAutomovelDTO(motorista)).thenReturn(dto);
+        when(motoristaRepository.findById(1L)).thenReturn(Optional.of(motorista));
+        when(mapperMotoristaUtils.motoristaToMotoristaAutomovelDTO(motorista)).thenReturn(dto);
 
         MotoristaAutomovelDto result = motoristaService.findById(1L);
 
-        Assertions.assertEquals(dto, result);
+        assertEquals(dto, result);
     }
 
     @Test
     void testDeletarPeloId() {
         motoristaService.deletarPeloId(1L);
-        Mockito.verify(motoristaRepository).deleteById(1L);
+        verify(motoristaRepository).deleteById(1L);
+    }
+
+    @Test
+    void testAceitarCorrida() {
+        Long idMotorista = 1L;
+        Long idResponsavel = 10L;
+
+        PedidoCorridaMotoristaDto pedidoDto = new PedidoCorridaMotoristaDto();
+        pedidoDto.setIdResponsavel(idResponsavel);
+
+        Responsavel responsavel = MockObjects.responsavel();
+        Motorista motorista = MockObjects.motorista();
+        ResponsavelMotoristaDto dtoEsperado = new ResponsavelMotoristaDto();
+
+        Mockito.when(responsavelRepository.findById(idResponsavel)).thenReturn(Optional.of(responsavel));
+        Mockito.when(motoristaRepository.findById(idMotorista)).thenReturn(Optional.of(motorista));
+        Mockito.when(mapperResponsavelUtils.responsavelToResponsavelMotoristaDTO(responsavel)).thenReturn(dtoEsperado);
+
+        ResponsavelMotoristaDto resultado = motoristaService.aceitarCorrida(idMotorista, pedidoDto);
+
+        assertEquals(StatusPedidoCorrida.Pedido_Aceito, responsavel.getStatusPedidoCorrida());
+        assertEquals(StatusPedidoCorrida.Pedido_Aceito, motorista.getStatusPedidoCorrida());
+        assertEquals(motorista, responsavel.getMotorista());
+        assertEquals(dtoEsperado, resultado);
+
+        verify(responsavelRepository).save(responsavel);
+    }
+
+    @Test
+    void testNegarCorrida() {
+        Long idMotorista = 1L;
+        Long idResponsavel = 10L;
+
+        PedidoCorridaMotoristaDto pedidoDto = new PedidoCorridaMotoristaDto();
+        pedidoDto.setIdResponsavel(idResponsavel);
+
+        Responsavel responsavel = MockObjects.responsavel();
+        Motorista motorista = MockObjects.motorista();
+        ResponsavelMotoristaDto dtoEsperado = new ResponsavelMotoristaDto();
+
+        Mockito.when(responsavelRepository.findById(idResponsavel)).thenReturn(Optional.of(responsavel));
+        Mockito.when(motoristaRepository.findById(idMotorista)).thenReturn(Optional.of(motorista));
+        Mockito.when(mapperResponsavelUtils.responsavelToResponsavelMotoristaDTO(responsavel)).thenReturn(dtoEsperado);
+
+        ResponsavelMotoristaDto resultado = motoristaService.negarCorrida(idMotorista, pedidoDto);
+
+        assertEquals(StatusPedidoCorrida.Pedido_Negado, responsavel.getStatusPedidoCorrida());
+        assertEquals(StatusPedidoCorrida.Pedido_Negado, motorista.getStatusPedidoCorrida());
+        assertEquals(motorista, responsavel.getMotorista());
+        assertEquals(dtoEsperado, resultado);
+
+        verify(responsavelRepository).save(responsavel);
     }
 }

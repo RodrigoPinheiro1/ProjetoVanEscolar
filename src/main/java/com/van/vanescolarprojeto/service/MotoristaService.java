@@ -43,6 +43,26 @@ public class MotoristaService {
         return mapperMotoristaUtils.motoristaToMotoristaAutomovelDTO(motorista);
     }
 
+
+    public AtualizaMotoristaDto atualizarMotorista(Long idMotorista, AtualizaMotoristaDto motoristaDto) {
+
+
+        Motorista motoristaOriginal = motoristaRepository.findById(idMotorista).orElseThrow(UsuarioNaoEncontrado::new);
+
+        Motorista motoristaAtualizado = mapperMotoristaUtils.atualizaMotoristaDtoToMotorista(motoristaDto);
+        motoristaAtualizado.setId(idMotorista);
+
+        if (!motoristaOriginal.equals(motoristaAtualizado)) {
+            geradorArquivoService.salvarMudancaEmArquivo(motoristaOriginal, motoristaAtualizado);
+        }
+
+        motoristaRepository.save(motoristaAtualizado);
+
+        return mapperMotoristaUtils.motoristaToAtualizaMotoristaDTO(motoristaAtualizado);
+
+    }
+
+
     public Page<MotoristaDto> acharMotorista(String cidade, String bairro, Pageable pageable) {
 
 
@@ -56,30 +76,6 @@ public class MotoristaService {
         return responsavelRepository.acharPorPedidoFeito(idMotorista, pageable)
                 .map(mapperResponsavelUtils::responsavelToResponsavelDTO);
     }
-
-
-
-
-    public AtualizaMotoristaDto atualizarMotorista(Long idMotorista, AtualizaMotoristaDto motoristaDto) {
-
-
-        Motorista motoristaOriginal = motoristaRepository.findById(idMotorista).orElseThrow(UsuarioNaoEncontrado::new);
-
-        Motorista motoristaAtualizado = mapperMotoristaUtils.atualizaMotoristaDtoToMotorista(motoristaDto);
-        motoristaAtualizado.setId(idMotorista);
-
-
-        if (!motoristaOriginal.equals(motoristaAtualizado)) {
-            geradorArquivoService.salvarMudancaEmArquivo(motoristaOriginal, motoristaAtualizado);
-        }
-
-        motoristaAtualizado.setId(idMotorista);
-
-        motoristaRepository.save(motoristaAtualizado);
-        return mapperMotoristaUtils.motoristaToAtualizaMotoristaDTO(motoristaAtualizado);
-
-    }
-
 
     public MotoristaAutomovelDto findById(Long idMotorista) {
 
@@ -122,7 +118,6 @@ public class MotoristaService {
 
         return mapperResponsavelUtils.responsavelToResponsavelMotoristaDTO(responsavel);
     }
-
 
 
     public void deletarPeloId(Long idMotorista) {
