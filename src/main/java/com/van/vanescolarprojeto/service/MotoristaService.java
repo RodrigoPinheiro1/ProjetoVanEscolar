@@ -26,6 +26,8 @@ public class MotoristaService {
     private final ResponsavelRepository responsavelRepository;
 
 
+    private final GeradorArquivoService geradorArquivoService;
+
     private final MapperMotoristaUtils mapperMotoristaUtils;
     private final MapperResponsavelUtils mapperResponsavelUtils;
 
@@ -35,6 +37,8 @@ public class MotoristaService {
         Motorista motorista = mapperMotoristaUtils.motoristaAutomovelDTOtoMotorista(motoristaAutomovelDto);
 
         motoristaRepository.save(motorista);
+
+        geradorArquivoService.salvarMotoristaEmArquivo(motorista);
 
         return mapperMotoristaUtils.motoristaToMotoristaAutomovelDTO(motorista);
     }
@@ -51,6 +55,36 @@ public class MotoristaService {
 
         return responsavelRepository.acharPorPedidoFeito(idMotorista, pageable)
                 .map(mapperResponsavelUtils::responsavelToResponsavelDTO);
+    }
+
+
+
+
+    public AtualizaMotoristaDto atualizarMotorista(Long idMotorista, AtualizaMotoristaDto motoristaDto) {
+
+
+        Motorista motoristaOriginal = motoristaRepository.findById(idMotorista).orElseThrow(UsuarioNaoEncontrado::new);
+
+        Motorista motoristaAtualizado = mapperMotoristaUtils.atualizaMotoristaDtoToMotorista(motoristaDto);
+        motoristaAtualizado.setId(idMotorista);
+
+
+        if (!motoristaOriginal.equals(motoristaAtualizado)) {
+            geradorArquivoService.salvarMudancaEmArquivo(motoristaOriginal, motoristaAtualizado);
+        }
+
+        motoristaAtualizado.setId(idMotorista);
+
+        motoristaRepository.save(motoristaAtualizado);
+        return mapperMotoristaUtils.motoristaToAtualizaMotoristaDTO(motoristaAtualizado);
+
+    }
+
+
+    public MotoristaAutomovelDto findById(Long idMotorista) {
+
+        Motorista motorista = motoristaRepository.findById(idMotorista).orElseThrow(UsuarioNaoEncontrado::new);
+        return mapperMotoristaUtils.motoristaToMotoristaAutomovelDTO(motorista);
     }
 
 
@@ -89,32 +123,7 @@ public class MotoristaService {
         return mapperResponsavelUtils.responsavelToResponsavelMotoristaDTO(responsavel);
     }
 
-    public AtualizaMotoristaDto atualizarMotorista(Long idMotorista, AtualizaMotoristaDto motoristaDto) {
 
-
-        motoristaRepository.findById(idMotorista).orElseThrow(UsuarioNaoEncontrado::new);
-
-        Motorista motorista = mapperMotoristaUtils.atualizaMotoristaDtoToMotorista(motoristaDto);
-
-        motorista.setId(idMotorista);
-        motorista.setNome(motoristaDto.getNome());
-        motorista.setCnh(motoristaDto.getCnh());
-        motorista.setTelefone(motoristaDto.getTelefone());
-        motorista.setEndereco(motoristaDto.getEndereco());
-        motorista.setAutomovel(motorista.getAutomovel());
-
-        motoristaRepository.save(motorista);
-
-        return mapperMotoristaUtils.motoristaToAtualizaMotoristaDTO(motorista);
-
-    }
-
-
-    public MotoristaAutomovelDto findById(Long idMotorista) {
-
-        Motorista motorista = motoristaRepository.findById(idMotorista).orElseThrow(UsuarioNaoEncontrado::new);
-        return mapperMotoristaUtils.motoristaToMotoristaAutomovelDTO(motorista);
-    }
 
     public void deletarPeloId(Long idMotorista) {
         motoristaRepository.deleteById(idMotorista);

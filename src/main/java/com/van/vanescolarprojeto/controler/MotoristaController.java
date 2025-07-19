@@ -48,7 +48,7 @@ public class MotoristaController {
     }
 
 
-    @GetMapping("/motoristas")
+    @GetMapping
     public Page<MotoristaDto> procurarMotorista(@RequestParam String cidade,
                                                 @RequestParam(required = false) String bairro,
                                                 Pageable pageable) {

@@ -31,7 +31,7 @@ public class GlobalMessageException {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UsuarioNaoEncontrado.class)
-    public ResponseEntity<MessageError> usuarioNaoEncontrado(){
+    public ResponseEntity<MessageError> usuarioNaoEncontrado() {
 
         return ResponseEntity.badRequest().body(new MessageError(LocalDateTime.now(),
                 HttpStatus.NOT_FOUND.value(), "usuario não encontrado"));
@@ -40,10 +40,19 @@ public class GlobalMessageException {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoResourceFoundException.class)
-    public ResponseEntity<MessageError> urlNaoEncontrada(){
+    public ResponseEntity<MessageError> urlNaoEncontrada() {
 
         return ResponseEntity.badRequest().body(new MessageError(LocalDateTime.now(),
                 HttpStatus.NOT_FOUND.value(), "Url não existe"));
+
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(ArquivoException.class)
+    public ResponseEntity<MessageError> erroAogerarArquivo() {
+
+        return ResponseEntity.badRequest().body(new MessageError(LocalDateTime.now(),
+                HttpStatus.INTERNAL_SERVER_ERROR.value(), "erro Ao gerar Arquivo"));
 
     }
 
